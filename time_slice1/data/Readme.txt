@@ -12,3 +12,8 @@ EL - solar
 EM - wind
 EN - hydro
 EO - demand
+
+Warning: countries.xlsx was removed from an old commit because it hanged the
+push (the file is 70MB). Thereffore this file is now in .gitignore. It looks
+like the file is included in the cloned repo (on github). It might cause
+problems with pulling the repo.
