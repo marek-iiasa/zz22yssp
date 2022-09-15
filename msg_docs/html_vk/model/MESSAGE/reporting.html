@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standard output reports &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Auxiliary investment parameters" href="scaling_investment_costs.html" />
+    <link rel="prev" title="Solve statement workflow" href="model_solve.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Standard output reports</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/model/MESSAGE/reporting.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page is generated from inline documentation in <code class="docutils literal notranslate"><span class="pre">MESSAGE\reporting.gms</span></code>.</p>
+</div>
+<section id="standard-output-reports">
+<h1>Standard output reports<a class="headerlink" href="#standard-output-reports" title="Permalink to this headline"></a></h1>
+<p>This part of the code contains the definitions and scripts for a number of standard output reports.
+These default reports will be created after every MESSAGE run.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model_solve.html" class="btn btn-neutral float-left" title="Solve statement workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scaling_investment_costs.html" class="btn btn-neutral float-right" title="Auxiliary investment parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

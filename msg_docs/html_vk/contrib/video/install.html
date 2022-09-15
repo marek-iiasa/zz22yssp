@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video script: Installation &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sharing publications, projects, and tools" href="../../sharing.html" />
+    <link rel="prev" title="Recording video documentation" href="../video.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../contributing.html">Contributing to development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../version.html">Versions and releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html">Release procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html">Developing tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cla.html">Contributor License Agreement</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../video.html">Recording video documentation</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Video script: Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-the-installation">Check the installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download-and-start-tutorials">Download and start tutorials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../video.html#installation-of-the-software">Installation of the software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video.html#recording">Recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video.html#scripts-and-subtitles">Scripts and subtitles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video.html#editing">Editing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#file-issues-for-bugs-and-enhancements">File issues for bugs and enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#contribute-code-via-github-prs">Contribute code via Github PRs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#code-style">Code style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#manage-issues-and-pull-requests">Manage issues and pull requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../contributing.html">Contributing to development</a> &raquo;</li>
+          <li><a href="../video.html">Recording video documentation</a> &raquo;</li>
+      <li>Video script: Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contrib/video/install.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="video-script-installation">
+<h1>Video script: Installation<a class="headerlink" href="#video-script-installation" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use a totally fresh install of Anaconda.
+This includes removing conda-forge from the channels list, so there is no warning message in Step 6.</p>
+<p>Open the install documentation at <a class="reference external" href="https://docs.messageix.org">https://docs.messageix.org</a>.
+Open <a class="reference external" href="https://github.com/iiasa/message_ix">https://github.com/iiasa/message_ix</a> in a separate tab, for later.</p>
+</div>
+<p>Hello everybody and welcome to this video tutorial on the installation of MESSAGEix through Anaconda on Windows.</p>
+<p>You can also find on the Installation page of the MESSAGEix documentation at docs dot messageix dot org, as it is shown here on the right side.
+It is also linked in the description below.
+While you are there, make sure to check the prerequisite knowledge and skills to use MESSAGEix, as this will not be covered in our tutorials.</p>
+<p>That being said, let’s jump straight into installing MESSAGEix through Anaconda.
+At this point, we have already completed Steps 1 through 3, to install GAMS and add its PATH environment variable on the system.
+We have also completed Step 4, installing Anaconda using the instructions linked from the page.
+If you haven’t completed these Steps 1 through 4 yet, you should read the documentation and instructions for those steps, complete them, and then come back to this video.</p>
+<p>We begin with Step 5, opening the Anaconda Prompt from the Start Menu.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>In Step 6, we will first make sure that “conda forge” is used as the default channel to download and install packages, including message_ix and other packages that it requires.
+Secondly, we set the channel priority to ‘strict’.
+This ensures that conda will select the latest version of message_ix from the “noarch” channel and ignore much older packages in OS-specific channels.</p>
+<p>We copy the first command into the prompt and run it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>This channel is now the top-priority or our default channel.</p>
+<p>We then copy the second command into the prompt and run it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>Now the channel priority is set to strict.
+With that, we have completed Step 6, and we move on.</p>
+<p>In the next steps, we will create and activate a new Anaconda “environment”, and use that to install MESSAGEix.
+Conda allows us to have multiple environments, each with different Python packages and versions installed; the conda documentation explains this concept in complete detail.
+For this video, we will do everything with just 1 environment.</p>
+<p>Let’s go through each step, one by one.
+In Step 7, we create a new environment.
+Note that the prompt shows us “base” in the parentheses at the left side here.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use the mouse to highlight the <code class="docutils literal notranslate"><span class="pre">(base)</span></code> text at the left of the prompt.</p>
+</div>
+<p>This means that we are currently in the “base” environment.
+For MESSAGEix, all we need to remember is that we cannot use the “base” environment; we must create and use a new one.
+Let’s do that, by typing conda create double-dash name and then “message_env”, or copying the first command of Step 7.
+“message_env” will be the name of our new environment, but we can also use any other name.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">message_env</span></code> and hit [Enter].</p>
+</div>
+<p>We are prompted to say “yes” to creating this new environment, to be stored in this specific folder.
+Now we see that the environment has been created, and we enter the next command from Step 7, “conda activate message_env”, giving it the name of the environment we just created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>And we see that we are now “in” this environment from the prompt.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use the mouse to highlight the <code class="docutils literal notranslate"><span class="pre">(message_env)</span></code> text at the left of the prompt.</p>
+</div>
+<p>The next step is Step 8.
+We enter the command “conda install message-ix”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>We see that it’s now “solving” the environment.
+It lists all the packages and dependencies that will be installed, which are required by MESSAGEix.
+So, at the end of the list, confirm with “yes” and now we wait for all these packages to be installed.</p>
+<p>To check that this process has picked out the latest version of MESSAGEix, we can type Ctrl+F and search for message-ix.
+We can see that, first, it is one of the packages that will be installed, and second, the version matches the latest version shown in the documentation.
+Currently this is version 3.3.0, but it may be a newer version as you watch this.
+So in this case, we are OK.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.
+Highlight message_ix and version number when searching for it
+Prepare <a class="reference external" href="https://github.com/iiasa/message_ix/releases">https://github.com/iiasa/message_ix/releases</a> in a browser window to quickly switch there for version control</p>
+</div>
+<p>We can also check that our default channel, that we set in Step 6, is being used: both message-ix and ixmp will be installed from the conda-forge channel.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this, highlighting with the mouse.</p>
+</div>
+<p>So far, so good!</p>
+<p>At this point we must wait a few minutes for the packages to be downloaded and installed.
+Depending on the machine, it can take more or less time; if we’ve already downloaded the packages previously, it can be faster.</p>
+<p>So at this point, we have completed Step 8, and MESSAGEix—plus everything needed to use it—is installed.</p>
+</section>
+<section id="check-the-installation">
+<h2>Check the installation<a class="headerlink" href="#check-the-installation" title="Permalink to this headline"></a></h2>
+<p>If we look again at the install instructions…</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Change to the browser window where the install instructions appear.</p>
+</div>
+<p>…we can see that there are instructions for different ways of installing MESSAGEix, that are not covered in this video.
+Since we have already installed using Anaconda, we can skip down to the section titled “Check that the installation was successful”.</p>
+<p>To check this, we run two commands:
+The first command is “message-ix show-versions”:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>This is a way of accessing MESSAGEix from the command line, and it becomes available when the package is successfully installed.
+“show-versions” is a specific command that—as the name implies—shows the versions of MESSAGEix, ixmp, GAMS, and other required and related packages.</p>
+<p>By the way: when you experience an issue with MESSAGEix and you want to seek support via GitHub, it is very important to include the output of this command, because it includes essential information about your specific versions, operating system, etc.</p>
+<p>The second command, “message-ix platform list”, shows us a list of all the “platforms” that are configured on your system.
+In the IIASA ECE program, for instance, this will include our central database that we used as a shared storage for our models and scenarios.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>If you’ve just installed MESSAGEix for the first time, you will see a platform that’s named “local”.
+This is stored in a specific file on your system, and the path is shown here.
+It also shows us that “local” is the default platform.</p>
+<p>Another thing we can do, in order to check where Anaconda, our environment, and MESSAGEix are, is run the command “conda info”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>This shows us the directories where these have been placed.
+We can copy this path and paste it into Windows Explorer to open the “anaconda3” folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>And within this folder, we can navigate:</p>
+<ul class="simple">
+<li><p>first to “envs”, which means “environments”,</p></li>
+<li><p>then, to the folder named “message_env”, matching the name of the environment we created earlier,</p></li>
+<li><p>then to “Lib”, followed by “site-packages”.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>In this folder, we have one folder per Python package that has been installed in this specific environment.
+If we have other environments, different to “messager_env”, the corresponding “site-pacakges” folder will have different folders, with different other packages.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Find and select the message_ix folder.</p>
+</div>
+<p>If we are curious to look at the source code that MESSAGEix runs, for instance the actual GAMS files with the core linear program formulation, we can look at the files in this directory, specifically, the subdirectory message_ix/model/.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Show these files in Windows Explorer.</p>
+</div>
+<p>Another place to look is on GitHub directly:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Switch to a browser tab with <a class="reference external" href="https://github.com/iiasa/message_ix">https://github.com/iiasa/message_ix</a>.
+Navigate into the “message_ix/model/” folder.</p>
+</div>
+<p>Equally, the code for the ixmp package, that handles the data storage underlying MESSAGEix, can also be found in “site-packages”.</p>
+</section>
+<section id="download-and-start-tutorials">
+<h2>Download and start tutorials<a class="headerlink" href="#download-and-start-tutorials" title="Permalink to this headline"></a></h2>
+<p>We’ve now installed and checked the installation of MESSAGEix.
+The last thing we will cover in this video, and the first thing you will probably want to do if you are a new user, is to download and run the MESSAGEix tutorials.</p>
+<p>Our team has developed a very rich set of example models that give you an introduction to the use of MESSAGEix, ixmp, and some of the many capabilities of the framework.</p>
+<p>Complete information about these tutorials is available in the documentation…</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Go to documentation, navigate to page about “Tutorials”.</p>
+</div>
+<p>…here on this page.</p>
+<p>So we will cover the instructions under “Getting tutorial files” and “Running tutorials using Anaconda”.</p>
+<p>The first step is to download the tutorial files.
+Since these are a kind of learning aid, they are not automatically installed with the Python and GAMS code for MESSAGEix.
+This is why we need to download them.</p>
+<p>The “message-ix” program we already used has a command “dl” that does this for us.
+We only need to choose a specific folder or directory where we want the downloaded tutorials to be placed.
+In this case, let’s put them into the Document folder—but they can also be placed anywhere else.
+We use Windows Explorer to navigate to the Document folder, and then we copy the full path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>Next, with that same environment “message_env” active, we run the command “message-ix dl ” and then paste the path we just copied.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>We see that it receives some data and unzips it into that specific folder.
+It is a very quick process, so we already see that this folder has appeared, and if we double-click on it, then we see the folder where our tutorials are stored in.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>The tutorials are in the form of Jupyter notebooks.
+Remember - understanding and working with Jupyter notebooks is one of the prerequisite skills for learning MESSAGEix, these are listed in the documentation.
+This video does not cover this.</p>
+<p>The last thing we need to do in order to run the tutorials, is to install the “nb_conda” package for being able to run Jupyter.
+So what we do is copy this command and paste it in out Anaconda Prompt and run it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>It collects again some package meta data and solves the environment.
+Here, please answer also with “Yes”, so the specific packages can be downloaded.</p>
+<p>As such, we want to start the Jupyter notebook server and use this to open the tutorials.
+In order to do this, we want to switch the current working directory to this tutorial folder.
+We again use Windows Explorer to copy the tutorials path, and then, in the Anaconda Prompt, we use the “cd” or “change directory” command, to move into that folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>Next, we run the command “jupyter notebook” to start Jupyter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>A browser tab is automatically opened.
+This shows the list of files and subfolders in this folder.
+(If we “cd” to a different folder before running “jupyter notebook”, we would see different files.)</p>
+<p>As a last step, let’s open one tutorial notebook, for the “Westeros baseline” tutorial.
+We do this by clicking on the “Westeros” directory, and then on the file “westeros_baseline.ipynb.”</p>
+<p>So a new browser tab opens with the tutorial.
+The first thing we will need to check is that the “Kernel” which runs the notebook code is associated with the environment where we earlier installed MESSAGEix.
+To do that, we click on “Kernel” in the menu, then “Change Kernel.”
+An asterisk (*) shows which environment is currently active.
+As we can see, it appears by “message_env”, so we know that this notebook is running in the correct environment.</p>
+<p>We can then select the first cell and check that it runs correctly.
+To do so, select the cell and hit Ctrl + Enter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do this.</p>
+</div>
+<p>The cell runs correctly, including the line “import ixmp”.
+This is a confirmation that ixmp (and MESSAGEix) are installed correctly, and can be loaded and used by the Python code in this tutorial notebook.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline"></a></h2>
+<p>And with that we’ve reached the end of this video.
+Thank you for watching.
+Please read the documentation and explore the tutorials to learn more about the capabilities of the MESSAGEix framework, the ixmp platform, and how to use them in research.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../video.html" class="btn btn-neutral float-left" title="Recording video documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../sharing.html" class="btn btn-neutral float-right" title="Sharing publications, projects, and tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prerequisite knowledge &amp; skills &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MESSAGEix model &amp; framework" href="framework.html" />
+    <link rel="prev" title="The MESSAGEix framework" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisite knowledge &amp; skills</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-my-use-case">What is my use case?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#domain-knowledge">Domain knowledge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scientific-computing-skills">Scientific computing skills</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Domain knowledge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Scientific computing skills</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Prerequisite knowledge &amp; skills</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/prereqs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prerequisite-knowledge-skills">
+<h1>Prerequisite knowledge &amp; skills<a class="headerlink" href="#prerequisite-knowledge-skills" title="Permalink to this headline"></a></h1>
+<p>Modeling using MESSAGE<em>ix</em> requires domain knowledge, understanding of certain research methods, and scientific computing skills.
+This page lists these prerequisite items, grouped by different use cases.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-is-my-use-case" id="id3">What is my use case?</a></p></li>
+<li><p><a class="reference internal" href="#basic-usage" id="id4">Basic usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#domain-knowledge" id="id5">Domain knowledge</a></p></li>
+<li><p><a class="reference internal" href="#scientific-computing-skills" id="id6">Scientific computing skills</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-usage" id="id7">Advanced usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id8">Domain knowledge</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id9">Scientific computing skills</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Where possible, suggested learning materials are linked.
+In some cases, there are multiple options. Keep in mind that the right choice of learning materials and the time required depends on the context (e.g. formal classroom learning with an instructor vs. self-guided learning), level of prior knowledge, and learning goals.</p>
+<section id="what-is-my-use-case">
+<h2><a class="toc-backref" href="#id3">What is my use case?</a><a class="headerlink" href="#what-is-my-use-case" title="Permalink to this headline"></a></h2>
+<p>There are many different use cases for MESSAGE<em>ix</em>.
+This page currently distinguishes between “basic” and “advanced”:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Basic usage</p></th>
+<th class="head"><p>Advanced usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Install the released version of <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code>.</p></td>
+<td><p>Install the development version (source code).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Use a laptop/desktop computer.</p></td>
+<td><p>Use cloud computing/HPC servers.</p></td>
+</tr>
+<tr class="row-even"><td><p>Store data on your local machine.</p></td>
+<td><p>Store data in a shared database.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Run/modify the <a class="reference internal" href="tutorials.html"><span class="doc">tutorial notebooks</span></a>.</p></td>
+<td><p>Build large models from scratch.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Collaborate on MESSAGEix-GLOBIOM.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Use the mathematical formulation as-is.</p></td>
+<td><p>Modify the MESSAGE equations.</p></td>
+</tr>
+<tr class="row-even"><td><p>Use the <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code> Python/R code.</p></td>
+<td><p><a class="reference internal" href="contributing.html"><span class="doc">Contribute or request new features</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="basic-usage">
+<h2><a class="toc-backref" href="#id4">Basic usage</a><a class="headerlink" href="#basic-usage" title="Permalink to this headline"></a></h2>
+<section id="domain-knowledge">
+<h3><a class="toc-backref" href="#id5">Domain knowledge</a><a class="headerlink" href="#domain-knowledge" title="Permalink to this headline"></a></h3>
+<p>You should be able to:</p>
+<ol class="arabic simple">
+<li><p>Understand mathematical optimization, linear programming, and/or the calculus underlying these.</p></li>
+<li><p>Understand concepts including:</p>
+<ul class="simple">
+<li><p>Energy systems, including their components: resources, supply-side technologies, demand and end-use.</p></li>
+<li><p>Levels (such as primary or secondary energy) in an energy system.</p></li>
+<li><p>Efficiency of energy use or transformation.</p></li>
+<li><p>Costs, including the distinction between fixed costs, variable costs, and investment costs.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="scientific-computing-skills">
+<h3><a class="toc-backref" href="#id6">Scientific computing skills</a><a class="headerlink" href="#scientific-computing-skills" title="Permalink to this headline"></a></h3>
+<p>You should be able to:</p>
+<ol class="arabic">
+<li><p>Install and uninstall software on your operating system (OS): one of Linux, Windows, or macOS.</p></li>
+<li><p>Use a command line on your OS to navigate directories and files, run commands, and view their output.</p></li>
+<li><p>Modify environment variables on your OS.</p></li>
+<li><p>Write simple programs in Python or R, including:</p>
+<ul class="simple">
+<li><p>Understand concepts including: variables, functions, and arguments.</p></li>
+<li><p>Use control flow structures such as <code class="docutils literal notranslate"><span class="pre">if</span></code> statements and various types of loops.</p></li>
+<li><p>Access and read the documentation for the core language.</p></li>
+<li><p>Use a search engine to find code examples and to diagnose error messages.</p></li>
+</ul>
+<p>For Python, <a class="reference external" href="https://diveinto.org/python3/table-of-contents.html">Dive Into Python</a> is one beginner resource.
+Many free and paid online courses are available.</p>
+</li>
+<li><p>Understand the concept of a software package, software release, version number (in particular the concept of <a class="reference external" href="https://semver.org">semantic versioning</a>), deprecation.</p>
+<p>See <a class="reference internal" href="contrib/version.html#releases"><span class="std std-ref">Versions and releases</span></a> for specific practices used for <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code>.</p>
+</li>
+<li><p>Use the <a class="reference external" href="https://docs.anaconda.com/anaconda/navigator/">Anaconda Navigator</a> graphical interface or the <code class="docutils literal notranslate"><span class="pre">conda</span></code> command-line interface (<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-packages">documentation</a>) to install, uninstall, upgrade, and check the versions of Python packages.
+Understand the concept of <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html">conda environments</a>; create, activate, switch, and remove environments.</p></li>
+<li><p>Understand or learn the basic functionality of Python data science packages, including pandas.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/index.html#intro-to-pandas">Introductory tutorials</a> for pandas.</p></li>
+</ul>
+</li>
+<li><p>Use a Jupyter notebook to run Python or R code, including: start the notebook server; open, restart, and close notebooks; create and edit cells.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/notebook.html">Jupyter notebook</a> official documentation.</p></li>
+<li><p>Video introductions to the notebook.
+<a class="reference external" href="https://www.youtube.com/watch?v=jZ952vChhuI">Example 1</a> by Michael Fudge (English, 7 minutes)
+<a class="reference external" href="https://www.youtube.com/watch?v=HW29067qVWk">Example 2</a> by Corey Schafer (English, 30 minutes), both on YouTube.
+Many are available on other platforms.</p></li>
+<li><p>An <a class="reference external" href="https://www.datacamp.com/community/tutorials/tutorial-jupyter-notebook">in-depth tutorial</a> by Karlijn Williams on DataCamp.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="advanced-usage">
+<h2><a class="toc-backref" href="#id7">Advanced usage</a><a class="headerlink" href="#advanced-usage" title="Permalink to this headline"></a></h2>
+<p>The following items may be more or less.</p>
+<section id="id1">
+<h3><a class="toc-backref" href="#id8">Domain knowledge</a><a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p>You should be able to:</p>
+<ol class="arabic simple">
+<li><p>Understand concepts including:</p>
+<ul class="simple">
+<li><p>Capacity factor of a power-generating technology.</p></li>
+<li><p>Deprecation.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id9">Scientific computing skills</a><a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p>You should be able to:</p>
+<ol class="arabic">
+<li><p>Interact with a server or ‘headless’ computer, i.e. one without a graphical interface, over the command line, using SSH.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command-line interface (<a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/#installing-packages">documentation</a>) to install, uninstall, upgrade, and check the versions of Python packages.</p></li>
+<li><p>Use the <strong>Git version control system</strong> and the <code class="docutils literal notranslate"><span class="pre">git</span></code> command-line tool to clone repositories, pull, fetch, create branches, and push.
+For <a class="reference internal" href="contributing.html"><span class="doc">contributing to development</span></a>, you should know how to:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://git-scm.com/docs/git-merge">git merge</a>, i.e. bring all updates from the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch into your PR branch, giving you a chance to fix conflicts and make a new commit.</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/docs/git-rebase">git rebase</a>, i.e. replay your PR branch commits one-by-one, starting from the tip of the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch (rather than the original starting commit).</p></li>
+</ul>
+<p>Optionally, do these things via a graphical program such as GitHub Desktop.</p>
+<ul class="simple">
+<li><p>The free <a class="reference external" href="https://git-scm.com/book/en/v2">Pro Git book</a>.</p></li>
+<li><p>Interactive learning tools on <a class="reference external" href="http://try.github.io/">try.github.io</a>.</p></li>
+</ul>
+</li>
+<li><p>Understand and interact with repositories and issues on <strong>GitHub</strong>, including:</p>
+<ul class="simple">
+<li><p>Find and read the list of issues for a repository.</p></li>
+<li><p>Search within one repository or across all of GitHub.</p></li>
+<li><p>Use GitHub’s formatting to produce legible descriptions of code and code errors.</p></li>
+<li><p>Understand concepts including: pull request, merge, merge conflict, assign, review.</p></li>
+</ul>
+<p>See:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.github.com/en/github">Documentation for the GitHub website</a></p></li>
+<li><p><a class="reference external" href="https://guides.github.com/introduction/flow/">Short introduction to the Github ‘flow’</a>, which describes a <strong>pull request</strong> and how it is used.</p></li>
+<li><p>Interactive tools in the <a class="reference external" href="https://lab.github.com/">Learning Lab</a>.</p></li>
+</ul>
+</li>
+<li><p>Provide a complete and explicit description of a software error message and how to reproduce it.</p></li>
+<li><p>Read and understand GAMS code.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="The MESSAGEix framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="framework.html" class="btn btn-neutral float-right" title="MESSAGEix model &amp; framework" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

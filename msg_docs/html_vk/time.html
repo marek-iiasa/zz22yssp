@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Years, periods, and time slices &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"ACT": "\\text{ACT}", "STORAGE": "\\text{STORAGE}", "STORAGECHARGE": "\\text{STORAGE_CHARGE}", "durationtimerel": "\\text{duration_time_rel}", "input": "\\text{input}", "maptimecommoditystorage": "\\text{map_time_commodity_storage}", "storageinitial": "\\text{storage_initial}", "storageselfdischarge": "\\text{storage_self_discharge}"}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parameter definition" href="model/MESSAGE/parameter_def.html" />
+    <link rel="prev" title="Sets and mappings" href="model/MESSAGE/sets_maps_def.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Years, periods, and time slices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#years-and-periods">Years and periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-slices">Time slices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#duration-of-sub-annual-time-slices">Duration of sub-annual time slices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#discounting">Discounting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Years, periods, and time slices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/time.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="years-periods-and-time-slices">
+<h1>Years, periods, and time slices<a class="headerlink" href="#years-periods-and-time-slices" title="Permalink to this headline"></a></h1>
+<p>This page describes how time-related concepts are represented in the MESSAGE<em>ix</em> framework and stored in <em>ix</em> modeling platform.</p>
+<section id="years-and-periods">
+<h2>Years and periods<a class="headerlink" href="#years-and-periods" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">year</span></code> set—in a <a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.Scenario"><code class="xref py py-class docutils literal notranslate"><span class="pre">message_ix.Scenario</span></code></a> and in the MESSAGE<em>ix</em> model formulation—is used to index parameter dimensions with the names “year”, “year_act”, “year_vtg”, etc.
+Elements in this set are <strong>representative years</strong> within a <strong>period</strong> of time.
+MESSAGE<em>ix</em> treats periods as contiguous, but <code class="docutils literal notranslate"><span class="pre">year</span></code> elements need not be consecutive.
+The representative year is always the <em>final</em> year of the corresponding period.</p>
+<dl class="simple">
+<dt>Example 1</dt><dd><p>In a Scenario with consecutive <code class="docutils literal notranslate"><span class="pre">year</span></code> elements [1984, 1985, 1986, …], the element <code class="docutils literal notranslate"><span class="pre">1985</span></code> refers to the period from 1985-01-01 to 1985-12-31, inclusive.</p>
+</dd>
+<dt>Example 2</dt><dd><p>In a Scenario with non-consecutive <code class="docutils literal notranslate"><span class="pre">year</span></code> elements [1000, 1010, 1020, …]:</p>
+<ul class="simple">
+<li><p>the element <code class="docutils literal notranslate"><span class="pre">1000</span></code> refers to a period that ends 1000-12-31, i.e. at the end of the calendar year 1000.</p></li>
+<li><p>the element <code class="docutils literal notranslate"><span class="pre">1010</span></code> refers to a period that ends 1010-12-31, i.e. at the end of the calendar year 1010.</p></li>
+<li><p>the element <code class="docutils literal notranslate"><span class="pre">1010</span></code> therefore refers to the period from 1001-01-01 to 1010-12-31, inclusive.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">duration_period</span></code> stores the <strong>duration</strong> of each period, measured in years, indexed by elements from the <code class="docutils literal notranslate"><span class="pre">year</span></code> set.
+MESSAGE<em>ix</em> only supports <code class="docutils literal notranslate"><span class="pre">year</span></code> set elements that can be represented as integers, and therefore periods with durations that are a whole number of years.</p>
+<p>Other parameters may be <strong>aligned</strong> to the start or end of periods.</p>
+<dl class="simple">
+<dt>Example 3</dt><dd><p>A Scenario has <code class="docutils literal notranslate"><span class="pre">year</span></code> elements [1000, 1010, 1020, 1030, …], and a technology parameterized with <code class="docutils literal notranslate"><span class="pre">technical_lifetime</span></code> value of 20 years for the key <code class="docutils literal notranslate"><span class="pre">year_vtg=1010</span></code>.</p>
+<ul class="simple">
+<li><p>Capacity associated with this technology is constructed at the <em>beginning</em> of the period denoted by <code class="docutils literal notranslate"><span class="pre">1010</span></code>, i.e. as of 1001-01-01.</p></li>
+<li><p>By the end of this period, 1010-12-31, this technology has operated for 10 years.</p></li>
+<li><p>The next period, labelled <code class="docutils literal notranslate"><span class="pre">1020</span></code>, ends in 1020-12-31.
+By this date, the technology has operated for 20 years, equal to its technical lifetime.</p></li>
+<li><p>The following period, labelled <code class="docutils literal notranslate"><span class="pre">1030</span></code>, begins on 1021-01-01.
+The capacity created in <code class="docutils literal notranslate"><span class="pre">year_vtg=1010</span></code> is beyond its technical lifetime, and unavailable in this period.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="time-slices">
+<h2>Time slices<a class="headerlink" href="#time-slices" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">time</span></code> set is used to index parameter dimensions with the names “time”, “time_origin”, “time_dest”, etc.
+These are variously referred to as “(sub-annual) time slices”, “time steps”, or other names.
+Elements in this set are labels for <strong>portions of a single year</strong>.
+The special value <code class="docutils literal notranslate"><span class="pre">'year'</span></code> represents the entire year.</p>
+<p>Since a <code class="docutils literal notranslate"><span class="pre">year</span></code> element refers to the representative, final year within a period, using <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code> together denotes <em>a portion of that specific year</em>.</p>
+<dl class="simple">
+<dt>Example 4</dt><dd><p>In a Scenario with <code class="docutils literal notranslate"><span class="pre">year</span></code> elements [2000, 2002, 2004] and <code class="docutils literal notranslate"><span class="pre">time</span></code> elements [summer, winter]:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">year</span></code> element <code class="docutils literal notranslate"><span class="pre">2002</span></code> refers to the period from 2001-01-01 to 2002-12-31 inclusive, which has a <code class="docutils literal notranslate"><span class="pre">duration_period</span></code> of 2 years.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">time</span></code> element ‘summer’, <strong>used alone</strong>, refers to a portion of any year.</p></li>
+<li><p>In a MESSAGE<em>ix</em> parameter indexed by (<code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, …), values with the key (<code class="docutils literal notranslate"><span class="pre">2002</span></code>, ‘summer’, …) refer to the ‘summer’ portion of the final year (2002-01-01 to 2002-12-31) within the entire period (2001-01-01 to 2002-12-31) denoted by <code class="docutils literal notranslate"><span class="pre">2002</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<section id="duration-of-sub-annual-time-slices">
+<h3>Duration of sub-annual time slices<a class="headerlink" href="#duration-of-sub-annual-time-slices" title="Permalink to this headline"></a></h3>
+<p>The duration of each sub-annual time slice should be defined relative to the whole year, with a value between 0 and 1, using parameter <code class="docutils literal notranslate"><span class="pre">duration_time</span></code>.
+For example, in a model with four seasons with the same length, <code class="docutils literal notranslate"><span class="pre">duration_time</span></code> of each season will be 0.25.
+Please note that the duration of time slices does not need to be equal to each other.
+This information is needed to calculate capacity of a technology that is active in different time slices.
+Time slices can be represented at different temporal levels, using sets <code class="docutils literal notranslate"><span class="pre">lvl_temporal</span></code> and <code class="docutils literal notranslate"><span class="pre">map_temporal_hierarchy</span></code>.
+This helps introducing a flexible temporal resolution, e.g., by representing some technologies at finer time resolution while others at <code class="docutils literal notranslate"><span class="pre">year</span></code>.
+When there are more than one temporal levels, e.g., “year”, “season”, “month”, “day”, etc., <code class="docutils literal notranslate"><span class="pre">duration_time</span></code> is defined for time slices at each <strong>temporal level</strong> separately.
+The sum of <code class="docutils literal notranslate"><span class="pre">duration_time</span></code> of time slices at each temporal level must be equal to 1.
+For example, in a model with 4 time slices as “season” and 10 time slices as “day” under each “season”, <code class="docutils literal notranslate"><span class="pre">duration_time</span></code> of each “season” and “day” can be specified as 0.25 and 0.025, respectively.</p>
+<p>By default, the unit of <code class="docutils literal notranslate"><span class="pre">ACT</span></code> is treated per year in the GAMS formulation for different time slices.
+This means values reported in time slice “year” and “month” both have the same unit (e.g., GWa).
+However, the user can report the values across parameters and variables with different units relative to the length of the full year.
+For example, the user can report <code class="docutils literal notranslate"><span class="pre">ACT</span></code> in units of “GWa” and “GWh” for time slices of “year” and “hour”, respectively, in the same model.
+To activate this feature, the parent time slice for which the relative units are desired should be specified by set <code class="docutils literal notranslate"><span class="pre">time_relative</span></code>.
+This will ensure that parameter <code class="docutils literal notranslate"><span class="pre">duration_time_rel</span></code>  is effective.
+Otherwise, this parameter is filled by value of 1, meaning that the units will be treated uniformly across different sub-annual time slices.</p>
+</section>
+</section>
+<section id="discounting">
+<h2>Discounting<a class="headerlink" href="#discounting" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">interest_rate</span></code> in MESSAGE<em>ix</em> is defined for a period of one year, therefore, for periods of more than a year, the discounting is performed in a cumulative manner.</p>
+<dl class="simple">
+<dt>Example 5</dt><dd><p>Using the same setup as Example 2:</p>
+<ul class="simple">
+<li><p>Discounting for the element <code class="docutils literal notranslate"><span class="pre">1010</span></code> involves discounting for years <code class="docutils literal notranslate"><span class="pre">1001</span></code>, <code class="docutils literal notranslate"><span class="pre">1002</span></code>, … , <code class="docutils literal notranslate"><span class="pre">1010</span></code>.</p></li>
+<li><p>Using the standard PV formula, we have that, for the year <code class="docutils literal notranslate"><span class="pre">1001</span></code> the discount factor would be <span class="math notranslate nohighlight">\((1 + interest_rate)^(1000 - 1001)\)</span>, for the year  <code class="docutils literal notranslate"><span class="pre">1002</span></code> the discount factor would be <span class="math notranslate nohighlight">\((1 + interest_rate)^(1000 - 1002)\)</span>, and so on.</p></li>
+<li><p>Therefore, the period discount factor for the element <code class="docutils literal notranslate"><span class="pre">1010</span></code> is <span class="math notranslate nohighlight">\(df_1010 = (1 + interest_rate)^(1000 - 1001) + (1 + interest_rate)^(1000 - 1002) + ... + (1 + interest_rate)^(1000 - 1010)\)</span></p></li>
+<li><p>Analogously, the period discount factor for the element <code class="docutils literal notranslate"><span class="pre">1020</span></code> is <span class="math notranslate nohighlight">\(df_1020 = (1 + interest_rate)^(1000 - 1011) + (1 + interest_rate)^(1000 - 1012) + ... + (1 + interest_rate)^(1000 - 1020)\)</span></p></li>
+<li><p>So, if we have a cost of <code class="docutils literal notranslate"><span class="pre">K_1010</span></code> for the element <code class="docutils literal notranslate"><span class="pre">1010</span></code>, its discounted value would be <code class="docutils literal notranslate"><span class="pre">df_1010</span> <span class="pre">*</span> <span class="pre">K_1010</span></code>, which means, all the years in  element <code class="docutils literal notranslate"><span class="pre">1010</span></code> have a representative cost of <code class="docutils literal notranslate"><span class="pre">K_1010</span></code> that is discounted up to the initial <code class="docutils literal notranslate"><span class="pre">year</span></code> of the setup, namely, the year <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>In practice, since the representative year of a period is always its final year, the actual calculation of the period discount factor within the model is performed backwards, i.e., starting from the final year of the period until the initial year.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model/MESSAGE/sets_maps_def.html" class="btn btn-neutral float-left" title="Sets and mappings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model/MESSAGE/parameter_def.html" class="btn btn-neutral float-right" title="Parameter definition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

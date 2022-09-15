@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MACRO core formulation &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"ACT": "\\text{ACT}", "STORAGE": "\\text{STORAGE}", "STORAGECHARGE": "\\text{STORAGE_CHARGE}", "durationtimerel": "\\text{duration_time_rel}", "input": "\\text{input}", "maptimecommoditystorage": "\\text{map_time_commodity_storage}", "storageinitial": "\\text{storage_initial}", "storageselfdischarge": "\\text{storage_self_discharge}"}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Efficiency - output- vs. input defined technologies" href="../../efficiency.html" />
+    <link rel="prev" title="Auxiliary investment parameters" href="../MESSAGE/scaling_investment_costs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MACRO core formulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notation-declaration">Notation declaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#decision-variables">Decision variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-utility-function">Equation UTILITY_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-capital-constraint">Equation CAPITAL_CONSTRAINT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-new-capital">Equation NEW_CAPITAL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-new-production">Equation NEW_PRODUCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-total-capital">Equation TOTAL_CAPITAL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-total-production">Equation TOTAL_PRODUCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-new-energy">Equation NEW_ENERGY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-energy-supply">Equation ENERGY_SUPPLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-cost-energy">Equation COST_ENERGY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-terminal-condition">Equation TERMINAL_CONDITION</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MACRO core formulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/model/MACRO/macro_core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page is generated from inline documentation in <code class="docutils literal notranslate"><span class="pre">MACRO\macro_core.gms</span></code>.</p>
+</div>
+<section id="macro-core-formulation">
+<h1>MACRO core formulation<a class="headerlink" href="#macro-core-formulation" title="Permalink to this headline"></a></h1>
+<p>MACRO is a macroeconomic model maximizing the intertemporal utility function of a single representative producer-consumer
+in each node (or macro-economic region). The optimization result is a sequence of optimal savings, investment, and consumption decisions.
+The main variables of the model are the capital stock, available labor, and commodity inputs, which together determine the
+total output of an economy according to a nested constant elasticity of substitution (CES) production function. End-use service
+demands in the (commercial) demand categories of MESSAGE is determined within the model, and is consistent with commodity
+supply curves, which are inputs to the model.</p>
+<section id="notation-declaration">
+<h2>Notation declaration<a class="headerlink" href="#notation-declaration" title="Permalink to this headline"></a></h2>
+<p>The following short notation is used in the mathematical description relative to the GAMS code:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 28%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Math Notation</p></th>
+<th class="head"><p>GAMS set &amp; index notation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n\)</span></p></td>
+<td><p>node (or node_active in loops)</p></td>
+<td><p>spatial node corresponding to the macro-economic MESSAGE regions</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y\)</span></p></td>
+<td><p>year</p></td>
+<td><p>year (2005, 2010, 2020, …, 2100)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s\)</span></p></td>
+<td><p>sector</p></td>
+<td><p>sector corresponding to the (commercial) end-use demands of MESSAGE</p></td>
+</tr>
+</tbody>
+</table>
+<p>A listing of all parameters used in MACRO together with a decription can be found in the table below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(duration\_period_y\)</span></p></td>
+<td><p>Number of years in time period <span class="math notranslate nohighlight">\(y\)</span> (forward diff)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(total\_cost_{n,y}\)</span></p></td>
+<td><p>Total system costs in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span> from MESSAGE model run</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(enestart_{n,s,y}\)</span></p></td>
+<td><p>Consumption level of (commercial) end-use services <span class="math notranslate nohighlight">\(s\)</span> in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span> from MESSAGE model run</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(eneprice_{n,s,y}\)</span></p></td>
+<td><p>Shadow prices of (commercial) end-use services <span class="math notranslate nohighlight">\(s\)</span> in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span> from MESSAGE model run</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\epsilon_n\)</span></p></td>
+<td><p>Elasticity of substitution between capital-labor and total energy in region <span class="math notranslate nohighlight">\(n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho_n\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\epsilon - 1 / \epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the elasticity of subsitution in region <span class="math notranslate nohighlight">\(n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(depr_n\)</span></p></td>
+<td><p>Annual depreciation rate in region <span class="math notranslate nohighlight">\(n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\alpha_n\)</span></p></td>
+<td><p>Capital value share parameter in region <span class="math notranslate nohighlight">\(n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a_n\)</span></p></td>
+<td><p>Production function coefficient of capital and labor in region <span class="math notranslate nohighlight">\(n\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(b_{n,s}\)</span></p></td>
+<td><p>Production function coefficients of the different end-use sectors in region <span class="math notranslate nohighlight">\(n\)</span>, sector <span class="math notranslate nohighlight">\(s\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(udf_{n,y}\)</span></p></td>
+<td><p>Utility discount factor in period year in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(newlab_{n,y}\)</span></p></td>
+<td><p>New vintage of labor force in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(grow_{n,y}\)</span></p></td>
+<td><p>Annual growth rates of potential GDP in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(aeei_{n,s,y}\)</span></p></td>
+<td><p>Autonomous energy efficiency improvement (AEEI) in region <span class="math notranslate nohighlight">\(n\)</span>, sector <span class="math notranslate nohighlight">\(s\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(fin\_time_{n,y}\)</span></p></td>
+<td><p>finite time horizon correction factor in utility function in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="decision-variables">
+<h2>Decision variables<a class="headerlink" href="#decision-variables" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 28%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(K_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({K}_{n, y}\geq 0 ~ \forall n, y\)</span></p></td>
+<td><p>Capital stock in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(KN_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({KN}_{n, y}\geq 0 ~ \forall n, y\)</span></p></td>
+<td><p>New Capital vintage in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Y_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({Y}_{n, y}\geq 0 ~ \forall n, y\)</span></p></td>
+<td><p>Total production in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(YN_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({YN}_{n, y}\geq 0 ~ \forall n, y\)</span></p></td>
+<td><p>New production vintage in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({C}_{n, y}\geq 0 ~ \forall n, y\)</span></p></td>
+<td><p>Consumption in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(I_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({I}_{n, y}\geq 0 ~ \forall n, y\)</span></p></td>
+<td><p>Investment in region <span class="math notranslate nohighlight">\(n\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(PHYSENE_{n,s,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({PHYSENE}_{n, s, y}\geq 0 ~ \forall n, s, y\)</span></p></td>
+<td><p>Physical end-use service use in region <span class="math notranslate nohighlight">\(n\)</span>, sector <span class="math notranslate nohighlight">\(s\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(PRODENE_{n,s,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({PRODENE}_{n, s, y}\geq 0 ~ \forall n, s, y\)</span></p></td>
+<td><p>Value of end-use service in the production function in region <span class="math notranslate nohighlight">\(n\)</span>, sector <span class="math notranslate nohighlight">\(s\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(NEWENE_{n,s,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({NEWENE}_{n, s, y}\geq 0 ~ \forall n, s, y\)</span></p></td>
+<td><p>New end-use service in the production function in region <span class="math notranslate nohighlight">\(n\)</span>, sector <span class="math notranslate nohighlight">\(s\)</span> and period <span class="math notranslate nohighlight">\(y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(EC_{n,y}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(EC \in \left[-\infty..\infty\right]\)</span></p></td>
+<td><p>Approximation of system costs based on MESSAGE results</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(UTILITY\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(UTILITY \in \left[-\infty..\infty\right]\)</span></p></td>
+<td><p>Utility function (discounted log of consumption)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="equation-utility-function">
+<h3>Equation UTILITY_FUNCTION<a class="headerlink" href="#equation-utility-function" title="Permalink to this headline"></a></h3>
+<p>The utility function which is maximized sums up the discounted logarithm of consumption of a single representative producer-consumer over the entire time horizon
+of the model.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{UTILITY} = \sum_{n} \bigg( &amp;  \sum_{y |  (  (  {ord}( y )   &gt;  1 )  \wedge  (  {ord}( y )   &lt;   | y |  )  )} {udf}_{n, y} \cdot {\log}( C_{n, y} ) \cdot {duration\_period}_{y} \\
++ &amp;\sum_{y |  (  {ord}( y ) =  | y | ) } {udf}_{n, y} \cdot {\log}( C_{n, y} ) \cdot \big( {duration\_period}_{y-1} + \frac{1}{{FIN\_TIME}_{n, y}} \big) \bigg)\end{split}\]</div>
+<p>The utility discount rate for period <span class="math notranslate nohighlight">\(y\)</span> is set to <span class="math notranslate nohighlight">\(drate_{n} - grow_{n,y}\)</span>, where <span class="math notranslate nohighlight">\(drate_{n}\)</span> is the discount rate used in MESSAGE, typically set to 5%,
+and <span class="math notranslate nohighlight">\(grow\)</span> is the potential GDP growth rate. This choice ensures that in the steady state, the optimal growth rate is identical to the potential GDP growth rates <span class="math notranslate nohighlight">\(grow\)</span>.
+The values for the utility discount rates are chosen for descriptive rather than normative reasons. The term <span class="math notranslate nohighlight">\(\frac{{duration\_period}_{y} + {duration\_period}_{y-1}}{2}\)</span> mutliples the
+discounted logarithm of consumption with the period length. The final period is treated separately to include a correction factor <span class="math notranslate nohighlight">\(\frac{1}{{FIN\_TIME}_{n, y}}\)</span> reflecting
+the finite time horizon of the model. Note that the sum over nodes <span class="math notranslate nohighlight">\(node\_active\)</span> is artificial, because <span class="math notranslate nohighlight">\(node\_active\)</span> only contains one element.</p>
+</section>
+<section id="equation-capital-constraint">
+<h3>Equation CAPITAL_CONSTRAINT<a class="headerlink" href="#equation-capital-constraint" title="Permalink to this headline"></a></h3>
+<p>The following equation specifies the allocation of total production among current consumption <span class="math notranslate nohighlight">\({C}_{n, y}\)</span>, investment into building up capital stock excluding
+the sectors represented in MESSAGE <span class="math notranslate nohighlight">\({I}_{n, y}\)</span> and the MESSAGE system costs <span class="math notranslate nohighlight">\({EC}_{n, y}\)</span> which are derived from a previous MESSAGE model run. As described in <span id="id1">[<a class="reference internal" href="../../bibliography.html#id6" title="Alan Sussmann Manne and Richard G Richels. Buying greenhouse insurance: the economic costs of carbon dioxide emission limits. MIT press, 1992. ISBN 0-262-13280-X.">7</a>]</span>, the first-order
+optimality conditions lead to the Ramsey rule for the optimal allocation of savings, investment and consumption over time.</p>
+<div class="math notranslate nohighlight">
+\[Y_{n, y} = C_{n, y} + I_{r, y} + {EC}_{n, y} \qquad \forall{n, y}\]</div>
+</section>
+<section id="equation-new-capital">
+<h3>Equation NEW_CAPITAL<a class="headerlink" href="#equation-new-capital" title="Permalink to this headline"></a></h3>
+<p>The accumulation of capital in the sectors not represented in MESSAGE is governed by new capital stock equation. Net capital formation <span class="math notranslate nohighlight">\({KN}_{n,y}\)</span> is derived from gross
+investments <span class="math notranslate nohighlight">\({I}_{n,y}\)</span> minus depreciation of previsouly existing capital stock.</p>
+<div class="math notranslate nohighlight">
+\[{KN}_{n,y} = {duration\_period}_{y} \cdot I_{n,y} \qquad \forall{n, y &gt; 1}\]</div>
+<p>Here, the initial boundary condition for the base year <span class="math notranslate nohighlight">\(y_0\)</span> implies for the investments that <span class="math notranslate nohighlight">\(I_{n,y_0} = (grow_{n,y_0} + depr_{n}) \cdot kgdp_{n} \cdot gdp_{n,y_0}\)</span>.</p>
+</section>
+<section id="equation-new-production">
+<h3>Equation NEW_PRODUCTION<a class="headerlink" href="#equation-new-production" title="Permalink to this headline"></a></h3>
+<p>MACRO employs a nested constant elasticity of substitution (CES) production function with capital, labor and the (commercial) end-use services
+represented in MESSAGE as inputs. This version of the production function is equaivalent to that in MARKAL-MACRO.</p>
+<div class="math notranslate nohighlight">
+\[{YN}_{n,y} =  { \left( {a}_{n} \cdot {{KN}_{n, y}}^{ ( {\rho}_{n} \cdot {\alpha}_{n} ) } \cdot {{newlab}_{n, y}}^{ ( {\rho}_{n} \cdot ( 1 - {\alpha}_{n} ) ) } + \displaystyle \sum_{s} ( {b}_{n, s} \cdot {{NEWENE}_{n, s, y}}^{{\rho}_{n}} )  \right) }^{ \frac{1}{{\rho}_{n}} } \qquad \forall{ n, y &gt; 1}\]</div>
+</section>
+<section id="equation-total-capital">
+<h3>Equation TOTAL_CAPITAL<a class="headerlink" href="#equation-total-capital" title="Permalink to this headline"></a></h3>
+<p>Equivalent to the total production equation above, the total capital stock, again excluding those sectors which are modeled in MESSAGE, is then simply a summation
+of capital stock in the previous period <span class="math notranslate nohighlight">\(y-1\)</span>, depreciated with the depreciation rate <span class="math notranslate nohighlight">\(depr_{n}\)</span>, and the capital stock added in the current period <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[K_{n, y} = K_{n, y-1} \cdot { \left( 1 - {depr}_n \right) }^{duration\_period_{y}} + {KN}_{n, y} \qquad \forall{ n, y &gt; 1}\]</div>
+</section>
+<section id="equation-total-production">
+<h3>Equation TOTAL_PRODUCTION<a class="headerlink" href="#equation-total-production" title="Permalink to this headline"></a></h3>
+<p>Total production in the economy (excluding energy sectors) is the sum of production from  assets that were already existing in the previous period <span class="math notranslate nohighlight">\(y-1\)</span>,
+depreciated with the depreciation rate <span class="math notranslate nohighlight">\(depr_{n}\)</span>, and the new vintage of production from period <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[Y_{n, y} = Y_{n, y-1} \cdot { \left( 1 - {depr}_n \right) }^{duration\_period_{y}} + {YN}_{n, y} \qquad \forall{ n, y &gt; 1}\]</div>
+</section>
+<section id="equation-new-energy">
+<h3>Equation NEW_ENERGY<a class="headerlink" href="#equation-new-energy" title="Permalink to this headline"></a></h3>
+<p>Total energy production (across the six commerical energy demands <span class="math notranslate nohighlight">\(s\)</span>) is the sum of production from all assets that were already existing
+in the previous period <span class="math notranslate nohighlight">\(y-1\)</span>, depreciated with the depreciation rate <span class="math notranslate nohighlight">\(depr_{n}\)</span>, and the the new vintage of energy production from
+period <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[{PRODENE}_{n, s, y} = {PRODENE}_{n, s, y-1} \cdot { \left( 1 - {depr}_n \right) }^{duration\_period_{y}} + {NEWENE}_{n, s, y} \qquad \forall{ n, s, y &gt; 1}\]</div>
+</section>
+<section id="equation-energy-supply">
+<h3>Equation ENERGY_SUPPLY<a class="headerlink" href="#equation-energy-supply" title="Permalink to this headline"></a></h3>
+<p>The relationship below establishes the link between physical energy <span class="math notranslate nohighlight">\({PHYSENE}_{r, s, y}\)</span> as accounted in MESSAGE for the six commerical energy demands <span class="math notranslate nohighlight">\(s\)</span> and
+energy in terms of monetary value <span class="math notranslate nohighlight">\({PRODENE}_{n, s, y}\)</span> as specified in the production function of MACRO.</p>
+<div class="math notranslate nohighlight">
+\[{PHYSENE}_{n, s, y} \geq {PRODENE}_{n, s, y} \cdot {aeei\_factor}_{n, s, y} \qquad \forall{ n, s, y &gt; 1}\]</div>
+<p>The cumulative effect of autonomous energy efficiency improvements (AEEI) is captured in
+<span class="math notranslate nohighlight">\({aeei\_factor}_{n,s,y} = {aeei\_factor}_{n, s, y-1} \cdot (1 - {aeei}_{n,s,y})^{duration\_period}_{y}\)</span>
+with <span class="math notranslate nohighlight">\({aeei\_factor}_{n,s,y=1} = 1\)</span>. Therefore, choosing the <span class="math notranslate nohighlight">\({aeei}_{n,s,y}\)</span> coefficients appropriately offers the possibility to calibrate MACRO to a certain energy demand trajectory
+from MESSAGE.</p>
+</section>
+<section id="equation-cost-energy">
+<h3>Equation COST_ENERGY<a class="headerlink" href="#equation-cost-energy" title="Permalink to this headline"></a></h3>
+<p>Energy system costs are based on a previous MESSAGE model run. The approximation of energy system costs in vicinity of the MESSAGE solution are approximated by a Taylor expansion with the
+first order term using shadow prices <span class="math notranslate nohighlight">\(eneprice_{s, y, n}\)</span> of the MESSAGE model’s solution and a quadratic second-order term.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{EC}_{n, y} =  &amp; {total\_cost}_{n, r} \\
++ &amp; \displaystyle \sum_{s} {eneprice}_{s, y, n} \cdot \left( {PHYSENE}_{n, s, y} - {enestart}_{s, y, n} \right) \\
++ &amp; \displaystyle \sum_{s} \frac{{eneprice}_{s, y, n}}{{enestart}_{s, y, n}} \cdot \left( {PHYSENE}_{n, s, y} - {enestart}_{s, y, n} \right)^2 \qquad \forall{ n, y &gt; 1}\end{split}\]</div>
+</section>
+<section id="equation-terminal-condition">
+<h3>Equation TERMINAL_CONDITION<a class="headerlink" href="#equation-terminal-condition" title="Permalink to this headline"></a></h3>
+<p>Given the finite time horizon of MACRO, a terminal constraint needs to be applied to ensure that investments are chosen at an appropriate level, i.e. to replace depriciated capital and
+provide net growth of capital stock beyond MACRO’s time horizon <span id="id2">[<a class="reference internal" href="../../bibliography.html#id6" title="Alan Sussmann Manne and Richard G Richels. Buying greenhouse insurance: the economic costs of carbon dioxide emission limits. MIT press, 1992. ISBN 0-262-13280-X.">7</a>]</span>. The goal is to avoid to the extend possible model artifacts resulting from this finite time horizon
+cutoff.</p>
+<div class="math notranslate nohighlight">
+\[K_{n, y} \cdot  \left( grow_{n, y} + {depr}_n \right) \leq I_{n, y} \qquad \forall{ n, y = last year}\]</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../MESSAGE/scaling_investment_costs.html" class="btn btn-neutral float-left" title="Auxiliary investment parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../efficiency.html" class="btn btn-neutral float-right" title="Efficiency - output- vs. input defined technologies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

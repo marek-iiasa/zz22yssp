@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solve statement workflow &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"ACT": "\\text{ACT}", "STORAGE": "\\text{STORAGE}", "STORAGECHARGE": "\\text{STORAGE_CHARGE}", "durationtimerel": "\\text{duration_time_rel}", "input": "\\text{input}", "maptimecommoditystorage": "\\text{map_time_commodity_storage}", "storageinitial": "\\text{storage_initial}", "storageselfdischarge": "\\text{storage_self_discharge}"}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Standard output reports" href="reporting.html" />
+    <link rel="prev" title="MESSAGE core formulation" href="model_core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solve statement workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#perfect-foresight-model">Perfect-foresight model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recursive-dynamic-and-myopic-model">Recursive-dynamic and myopic model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Solve statement workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/model/MESSAGE/model_solve.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page is generated from inline documentation in <code class="docutils literal notranslate"><span class="pre">MESSAGE\model_solve.gms</span></code>.</p>
+</div>
+<section id="solve-statement-workflow">
+<h1>Solve statement workflow<a class="headerlink" href="#solve-statement-workflow" title="Permalink to this headline"></a></h1>
+<p>This part of the code includes the perfect-foresight, myopic and rolling-horizon model solve statements
+including the required accounting of investment costs beyond the model horizon.</p>
+<section id="perfect-foresight-model">
+<h2>Perfect-foresight model<a class="headerlink" href="#perfect-foresight-model" title="Permalink to this headline"></a></h2>
+<p>For the perfect foresight version of MESSAGE<em>ix</em>, include all years in the model horizon and solve the entire model.
+This is the standard option; the GAMS global variable <code class="docutils literal notranslate"><span class="pre">%foresight%=0</span></code> by default.</p>
+<div class="math notranslate nohighlight">
+\[\min_x OBJ = \sum_{y \in Y} OBJ_y(x_y)\]</div>
+</section>
+<section id="recursive-dynamic-and-myopic-model">
+<h2>Recursive-dynamic and myopic model<a class="headerlink" href="#recursive-dynamic-and-myopic-model" title="Permalink to this headline"></a></h2>
+<p>For the myopic and rolling-horizon models, loop over horizons and iteratively solve the model, keeping the decision
+variables from prior periods fixed.
+This option is selected by setting the GAMS global variable <code class="docutils literal notranslate"><span class="pre">%foresight%</span></code> to a value greater than 0,
+where the value represents the number of years that the model instance is considering when iterating over the periods
+of the optimization horizon.</p>
+<p>Loop over <span class="math notranslate nohighlight">\(\hat{y} \in Y\)</span>, solving</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\min_x \ OBJ = \sum_{y \in \hat{Y}(\hat{y})} OBJ_y(x_y) \\
+\text{s.t. } x_{y'} = x_{y'}^* \quad \forall \ y' &lt; y\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{Y}(\hat{y}) = \{y \in Y | \ |\hat{y}| - |y| &lt; optimization\_horizon \}\)</span> and
+<span class="math notranslate nohighlight">\(x_{y'}^*\)</span> is the optimal value of <span class="math notranslate nohighlight">\(x_{y'}\)</span> in iteration <span class="math notranslate nohighlight">\(|y'|\)</span> of the iterative loop.</p>
+<p>The advantage of this implementation is that there is no need to ‘store’ the optimal values of all decision
+variables in additional reporting parameters - the last model solve automatically includes the results over the
+entire model horizon and can be imported via the ixmp interface.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model_core.html" class="btn btn-neutral float-left" title="MESSAGE core formulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reporting.html" class="btn btn-neutral float-right" title="Standard output reports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

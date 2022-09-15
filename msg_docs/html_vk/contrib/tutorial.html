@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developing tutorials &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributor License Agreement" href="cla.html" />
+    <link rel="prev" title="Release procedure" href="release.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version.html">Versions and releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html">Release procedure</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-and-writing-style">Code and writing style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#location">Location</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">Contributor License Agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video.html">Recording video documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#file-issues-for-bugs-and-enhancements">File issues for bugs and enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#contribute-code-via-github-prs">Contribute code via Github PRs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style">Code style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#manage-issues-and-pull-requests">Manage issues and pull requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../contributing.html">Contributing to development</a> &raquo;</li>
+      <li>Developing tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contrib/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="developing-tutorials">
+<h1>Developing tutorials<a class="headerlink" href="#developing-tutorials" title="Permalink to this headline"></a></h1>
+<p>Developers <em>and users</em> of the MESSAGE<em>ix</em> framework are welcome to contribute <strong>tutorials</strong>, according to the following guidelines.
+Per the license and CLA, tutorials will become part of the message_ix test suite and will be publicly available.</p>
+<p>Developers <strong>must</strong> ensure new features (including <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix.tools</span></code> submodules) are fully documented.
+This can be done via the API documentation (this site) and, optionally, a tutorial.
+These have complementary purposes:</p>
+<ul class="simple">
+<li><p>The API documentation (built using Sphinx and ReadTheDocs) must completely, but succinctly, <em>describe the arguments and behaviour</em> of every class and method in the code.</p></li>
+<li><p>Tutorials serve as <em>structured learning exercises</em> for the classroom or self-study.
+The intended learning outcome for each tutorial is that students understand how the model framework API may be used for scientific research, and can begin to implement their own models or model changes.</p></li>
+</ul>
+<section id="code-and-writing-style">
+<h2>Code and writing style<a class="headerlink" href="#code-and-writing-style" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Python and R code in notebooks: follow all points of the <a class="reference internal" href="../contributing.html#code-style"><span class="std std-ref">Code style</span></a> for message_ix.</p></li>
+<li><p>Only commit ‘bare’ Jupyter notebooks: clear all cell output before committing.
+Notebooks will be run and rendered when the documentation is generated.</p></li>
+<li><p>Add a line to <code class="file docutils literal notranslate"><span class="pre">message_ix/tests/test_tutorials.py</span></code>, so that the parametrized test function runs the tutorial (as noted at <a class="reference external" href="https://github.com/iiasa/message_ix/pull/196">PR #196</a>).</p></li>
+<li><p>Optionally, use Jupyter notebook slide-show features so that the tutorial can be viewed as a presentation.</p></li>
+<li><p>When relevant, provide links to publications or sources that provide greater detail for the methodology, data, or other packages used.</p></li>
+<li><p>Providing the mathematical formulation in the tutorial itself is optional.</p></li>
+<li><p>Framework specific variables and parameters or functions must be in italic.</p></li>
+<li><p>Relevant figures, tables, or diagrams should be added to the tutorial if these can help users to understand concepts.</p>
+<ul>
+<li><p>Place rendered versions of graphics in a directory with the tutorial (see <a class="reference internal" href="#location">Location</a> below).
+Use SVG, PNG, JPG, or other web-ready formats.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline"></a></h2>
+<p>Generally, a tutorial should have the following elements or sections.</p>
+<ul class="simple">
+<li><p>Tutorial introduction:</p>
+<ul>
+<li><p>The general overview of tutorial.</p></li>
+<li><p>The intended learning outcome.</p></li>
+<li><p>An explanation of which features are covered.</p></li>
+<li><p>Reference and provide links to any tutorials that are interlinked or part of a series.</p></li>
+</ul>
+</li>
+<li><p>Description of individual steps:</p>
+<ul>
+<li><p>A brief explanation of the step.</p></li>
+<li><p>A link to any relevant mathematical documentation.</p></li>
+</ul>
+</li>
+<li><p>Modeling results and visualizations:</p>
+<ul>
+<li><p>Model outputs and post-processing calculations in tutorials should demonstrate usage of the <a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/reporting.html" title="(in ixmp v3.5.1.dev7+ge795853)"><span class="xref std std-doc">message_ix.reporting module</span></a>.</p></li>
+<li><p>Plots to depict results should use <a class="reference external" href="https://github.com/IAMconsortium/pyam/">pyam</a>.</p></li>
+<li><p>Include a brief discussion of insights from the results, in line with the learning objectives.</p></li>
+</ul>
+</li>
+<li><p>Exercises: include self-test questions, small activities, and exercises at the end of a tutorial so that users (and instructors, if any) can check their learning.</p></li>
+</ul>
+</section>
+<section id="location">
+<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline"></a></h2>
+<p>Place notebooks in an appropriate location:</p>
+<dl>
+<dt><code class="file docutils literal notranslate"><span class="pre">tutorial/name.ipynb`</span></code></dt><dd><p>Stand-alone tutorial.</p>
+</dd>
+<dt><code class="file docutils literal notranslate"><span class="pre">tutorial/example/example_baseline.ipynb</span></code></dt><dd><p>Group of tutorials named “example.”
+Each notebook’s file name begins with the group name, followed by a name
+beginning with underscores.
+The group name can refer to a specific RES shared across multiple tutorials.
+Some example names include:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_baseline</span><span class="o">.</span><span class="n">ipynb</span>
+
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_basic</span><span class="o">.</span><span class="n">ipynb</span>  <span class="c1"># Basic modeling features, e.g.:</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_emmission_bounds</span><span class="o">.</span><span class="n">ipynb</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_emission_taxes</span><span class="o">.</span><span class="n">ipynb</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_fossil_resources</span><span class="o">.</span><span class="n">ipynb</span>
+
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_adv</span><span class="o">.</span><span class="n">ipynb</span>  <span class="c1"># Advanced modeling features, e.g.:</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_addon_technologies</span><span class="o">.</span><span class="n">ipynb</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_share_constraints</span><span class="o">.</span><span class="n">ipynb</span>
+
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_renewables</span><span class="o">.</span><span class="n">ipynb</span>  <span class="c1"># Features related to renewable energy, e.g.:</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_firm_capacity</span><span class="o">.</span><span class="n">ipynb</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_flexible_generation</span><span class="o">.</span><span class="n">ipynb</span>
+<span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span><span class="n">_renewable_resources</span><span class="o">.</span><span class="n">ipynb</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="release.html" class="btn btn-neutral float-left" title="Release procedure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cla.html" class="btn btn-neutral float-right" title="Contributor License Agreement" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

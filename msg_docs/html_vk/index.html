@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The MESSAGEix framework &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Prerequisite knowledge &amp; skills" href="prereqs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#">
+            <img src="_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>The MESSAGE<em>ix</em> framework</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-messageix-framework">
+<h1>The MESSAGE<em>ix</em> framework<a class="headerlink" href="#the-messageix-framework" title="Permalink to this headline"></a></h1>
+<p>MESSAGE<em>ix</em> is a versatile, dynamic systems-optimization modelling framework developed by the <abbr title="International Institute for Applied Systems Analysis">IIASA</abbr> Energy, Climate, and Environment (ECE) Program <a class="footnote-reference brackets" href="#rename" id="id1">1</a> since the 1980s.</p>
+<p>This is the documentation for <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code>, a Python package that ties together all components of the framework.
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">ixmp</span></code> are free and open source, licensed under the <a class="reference external" href="https://github.com/iiasa/message_ix/blob/main/LICENSE">APACHE 2.0 open-source license</a>.</p>
+<ul class="simple">
+<li><p>For the scientific reference of the framework, see Huppmann et al. (2019) <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Daniel Huppmann, Matthew Gidden, Oliver Fricko, Peter Kolp, Clara Orthofer, Michael Pimmer, Nikolay Kushin, Adriano Vinca, Alessio Mastrucci, Keywan Riahi, and Volker Krey. The MESSAGEix Integrated Assessment Model and the ix modeling platform (ixmp): An open framework for integrated and cross-cutting analysis of energy, climate, the environment, and sustainable development. Environmental Modelling &amp; Software, 112:143-156, 2019. doi:10.1016/j.envsoft.2018.11.012.">3</a>]</span>.</p></li>
+<li><p>For an overview and recent publications related to the specific MESSAGE<em>ix</em>-GLOBIOM global model instance used at the IIASA ECE Program, see the <a class="reference external" href="http://data.ene.iiasa.ac.at/message-globiom/">MESSAGEix-GLOBIOM documentation</a>.</p></li>
+</ul>
+<section id="getting-started">
+<span id="id3"></span><h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h2>
+<p>Modeling using MESSAGE<em>ix</em> requires domain knowledge, understanding of certain research methods, and scientific computing skills.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="prereqs.html"><span class="doc">Prerequisite knowledge &amp; skills</span></a> gives a list of these items for formal and self-guided learning.</p></li>
+</ul>
+<p>Then, continue with the:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="framework.html"><span class="doc">MESSAGEix model &amp; framework</span></a> detailed description and feature list.</p></li>
+<li><p><a class="reference internal" href="install.html"><span class="doc">Installation</span></a> of the software and essential dependencies.</p></li>
+<li><p><a class="reference internal" href="tutorials.html"><span class="doc">Tutorials</span></a> for new users that demonstrate the basic features of the framework.</p></li>
+<li><p><a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> of MESSAGE<em>ix</em> in academic publications, research projects, and derived tools.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/ix_features.svg"><img alt="_images/ix_features.svg" src="_images/ix_features.svg" width="360px" /></a>
+<figcaption>
+<p><span class="caption-text">Features of <code class="docutils literal notranslate"><span class="pre">ixmp</span></code>, <code class="docutils literal notranslate"><span class="pre">message_ix</span></code>, and related packages <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Daniel Huppmann, Matthew Gidden, Oliver Fricko, Peter Kolp, Clara Orthofer, Michael Pimmer, Nikolay Kushin, Adriano Vinca, Alessio Mastrucci, Keywan Riahi, and Volker Krey. The MESSAGEix Integrated Assessment Model and the ix modeling platform (ixmp): An open framework for integrated and cross-cutting analysis of energy, climate, the environment, and sustainable development. Environmental Modelling &amp; Software, 112:143-156, 2019. doi:10.1016/j.envsoft.2018.11.012.">3</a>]</span></span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="mathematical-specification">
+<span id="core"></span><h2>Mathematical specification<a class="headerlink" href="#mathematical-specification" title="Permalink to this headline"></a></h2>
+<p>These pages provide comprehensive description of the variables and equations in
+the core MESSAGEix mathematical implementation.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="model/MESSAGE/sets_maps_def.html"><span class="doc">Sets and mappings</span></a></p></li>
+<li><p><a class="reference internal" href="time.html"><span class="doc">Years, periods, and time slices</span></a></p></li>
+<li><p><a class="reference internal" href="model/MESSAGE/parameter_def.html"><span class="doc">Parameter definition</span></a></p></li>
+<li><p><a class="reference internal" href="model/MESSAGE/model_core.html"><span class="doc">MESSAGE core formulation</span></a></p></li>
+<li><p><a class="reference internal" href="model/MESSAGE/model_solve.html"><span class="doc">Solve statement workflow</span></a></p></li>
+<li><p><a class="reference internal" href="model/MESSAGE/reporting.html"><span class="doc">Standard output reports</span></a></p></li>
+<li><p><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html"><span class="doc">Auxiliary investment parameters</span></a></p></li>
+<li><p><a class="reference internal" href="model/MACRO/macro_core.html"><span class="doc">MACRO core formulation</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="developing-messageix-models">
+<span id="guide"></span><h2>Developing MESSAGE<em>ix</em> models<a class="headerlink" href="#developing-messageix-models" title="Permalink to this headline"></a></h2>
+<p>Developing a valid, scientific MESSAGE<em>ix</em> model requires careful use of the framework features.
+This section provides guidelines for how to make some common model design choices.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="efficiency.html"><span class="doc">Efficiency - output- vs. input defined technologies</span></a></p></li>
+<li><p><a class="reference internal" href="tools/add_year.html"><span class="doc">Add model years to an existing Scenario</span></a></p></li>
+<li><p><a class="reference internal" href="reporting.html"><span class="doc">Postprocessing and reporting</span></a></p></li>
+<li><p><a class="reference internal" href="debugging.html"><span class="doc">Debugging and data validation</span></a></p></li>
+<li><p><a class="reference internal" href="macro.html"><span class="doc">Calibrate and tune MESSAGE-MACRO</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="using-getting-help-and-contributing">
+<h2>Using, getting help, and contributing<a class="headerlink" href="#using-getting-help-and-contributing" title="Permalink to this headline"></a></h2>
+<p>Everyone is encouraged to use the framework to develop energy system and integrated assessment models!</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api.html"><span class="doc">Python API</span></a></p></li>
+<li><p><a class="reference internal" href="rmessageix.html"><span class="doc">Usage in R via reticulate</span></a></p></li>
+<li><p><a class="reference internal" href="whatsnew.html"><span class="doc">What’s New</span></a> —release history and migration/upgrade notes.</p></li>
+<li><p><a class="reference internal" href="notice.html"><span class="doc">User guidelines and notice</span></a> —including how to properly cite the framework and software in scientific research.</p></li>
+<li><p><a class="reference internal" href="contributing.html"><span class="doc">Contributing to development</span></a> —we welcome enhancements to the framework itself that enable new features across all models.</p></li>
+<li><p><a class="reference internal" href="sharing.html"><span class="doc">Sharing publications, projects, and tools</span></a>—we invite the sharing of the usage of the MESSAGE<em>ix</em> framework.</p></li>
+<li><p><a class="reference internal" href="faq.html"><span class="doc">Frequently asked questions</span></a></p></li>
+<li><p><a class="reference internal" href="bibliography.html"><span class="doc">References</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+<p id="help">Have a question? Check…</p>
+<ul class="simple">
+<li><p>…on GitHub:</p>
+<ul>
+<li><p>Join an existing <a class="reference external" href="https://github.com/iiasa/message_ix/discussions">discussion</a> or start a new one with your question.</p></li>
+<li><p>Search <a class="reference external" href="https://github.com/iiasa/message_ix/issues?q=is:issue">current issues</a>, or open a new one to report a bug in the code.</p></li>
+</ul>
+</li>
+<li><p>…the <a class="reference internal" href="faq.html"><span class="doc">Frequently asked questions</span></a>.</p></li>
+<li><p>…the message_ix Google Group, either <a class="reference external" href="https://groups.google.com/d/forum/message_ix">online</a> or via e-mail at &lt;<a class="reference external" href="mailto:message_ix&#37;&#52;&#48;googlegroups&#46;com">message_ix<span>&#64;</span>googlegroups<span>&#46;</span>com</a>&gt;.</p></li>
+</ul>
+<dl class="footnote brackets">
+<dt class="label" id="rename"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Known as the “Energy Program” until 2020-12-31.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="prereqs.html" class="btn btn-neutral float-right" title="Prerequisite knowledge &amp; skills" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

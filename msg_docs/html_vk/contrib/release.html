@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release procedure &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developing tutorials" href="tutorial.html" />
+    <link rel="prev" title="Versions and releases" href="version.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing to development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="version.html">Versions and releases</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Release procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preliminaries">Preliminaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#before-releasing">Before releasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#releasing">Releasing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Developing tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">Contributor License Agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video.html">Recording video documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#file-issues-for-bugs-and-enhancements">File issues for bugs and enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#contribute-code-via-github-prs">Contribute code via Github PRs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style">Code style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#manage-issues-and-pull-requests">Manage issues and pull requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../contributing.html">Contributing to development</a> &raquo;</li>
+      <li>Release procedure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contrib/release.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-procedure">
+<h1>Release procedure<a class="headerlink" href="#release-procedure" title="Permalink to this headline"></a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#preliminaries" id="id3">Preliminaries</a></p></li>
+<li><p><a class="reference internal" href="#before-releasing" id="id4">Before releasing</a></p></li>
+<li><p><a class="reference internal" href="#releasing" id="id5">Releasing</a></p></li>
+</ul>
+</div>
+<section id="preliminaries">
+<h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The procedure applies to both ixmp and message_ix.</p></li>
+<li><p>The ixmp release must be processed <em>before</em> message_ix.</p></li>
+<li><p>The person (or persons) processing the release needs the following authorizations:</p>
+<ul>
+<li><p>Maintainer or Owner on both Github repositories.</p></li>
+<li><p>Maintainer on the
+<a class="reference external" href="https://github.com/conda-forge/ixmp-feedstock">conda-forge/ixmp-feedstock</a>
+and
+<a class="reference external" href="https://github.com/conda-forge/message-ix-feedstock">message-ix-feedstock</a>
+repositories.
+This means your Github account is listed in the <code class="file docutils literal notranslate"><span class="pre">recipe/meta.yaml</span></code>, under the key <code class="docutils literal notranslate"><span class="pre">recipe-maintainers:</span></code>.</p></li>
+</ul>
+</li>
+<li><p>In the below:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> stands for the full version number, e.g. <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code>.
+Always include all three parts: major, minor, and patch, i.e. <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code> and never <code class="docutils literal notranslate"><span class="pre">1.2</span></code>.
+Look very carefully to see when <code class="docutils literal notranslate"><span class="pre">v&lt;version&gt;</span></code> versus <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> should be used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;upstream&gt;</span></code> stands for your local name for the Git remote that is the IIASA Github repository.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="before-releasing">
+<h2>Before releasing<a class="headerlink" href="#before-releasing" title="Permalink to this headline"></a></h2>
+<p><strong>Update these instructions.</strong> Keep them current with actual practice.</p>
+<p><strong>Handle deprecations.</strong> You can find these by searching the code base for “deprecat”.</p>
+<p>A deprecation always involves <em>two</em> versions: (1) the version in which the item “is [marked as] deprecated”, and (2) the version in which the item is removed.
+These must always be separated by at least one major version.
+For instance, an item marked as deprecated in v2.1 can be removed as of v3.0; an item marked as deprecated in v3.0 can be removed in v4.0, or later, e.g. in v5.0.</p>
+<ol class="arabic">
+<li><p>Mark any new deprecations.
+Explicitly state the version when the removal is targeted, so that users can adjust their code.</p></li>
+<li><p>Remove any items targeted for removal in this release.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This can be done at any point, and should be done before the release prep begins.
+For instance, a feature marked as deprecated in v2.0 <em>should</em> be removed before 3.0 is released.
+But <em>may</em> also be removed from the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch <em>immediately after</em> 2.0.0 is released.
+This is preferred, because it forces tutorials, user code, etc. to stay ahead of deprecations.</p>
+</div>
+</li>
+</ol>
+<p><strong>Check continuous integration.</strong>
+Any failures in (3) or (4) must be corrected before releasing.</p>
+<ol class="arabic simple" start="3">
+<li><p>Check <a class="reference external" href="https://github.com/iiasa/message_ix/actions/">https://github.com/iiasa/message_ix/actions/</a> (or <a class="reference external" href="https://github.com/iiasa/ixmp/actions/">equivalent for ixmp</a>) to ensure that the push and scheduled builds are passing.</p></li>
+<li><p>Check <a class="reference external" href="https://readthedocs.com/projects/iiasa-energy-program-message-ix/builds/">https://readthedocs.com/projects/iiasa-energy-program-message-ix/builds/</a> (or <a class="reference external" href="https://readthedocs.com/projects/iiasa-energy-program-ixmp/builds/">ixmp</a>) to ensure that the docs build is passing.</p></li>
+</ol>
+<p>If necessary, make and merge ≥1 PR(s) to address (1–4).</p>
+</section>
+<section id="releasing">
+<h2>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>(message_ix only) Edit <code class="file docutils literal notranslate"><span class="pre">setup.cfg</span></code>, to update the <code class="docutils literal notranslate"><span class="pre">install_requires</span></code> line for ixmp.</p>
+<p>Each version of message_ix must depend on the corresponding version of ixmp.
+For instance, message_ix 3.1.0 depends on ixmp ≥ 3.1.0; not ixmp 3.0.0.</p>
+</li>
+<li><p>Edit <code class="file docutils literal notranslate"><span class="pre">RELEASE_NOTES.rst</span></code>:</p>
+<ul class="simple">
+<li><p>Comment the heading “Next release”, and insert below it:</p>
+<ul>
+<li><p>A commented “All changes” sub-heading (<code class="docutils literal notranslate"><span class="pre">---</span></code>).</p></li>
+<li><p>A ReST anchor with the version number.</p></li>
+<li><p>Another heading (<code class="docutils literal notranslate"><span class="pre">===</span></code>) below it, with the version number and date</p></li>
+</ul>
+</li>
+<li><p>Add a short text description summarizing the release.</p></li>
+<li><p>If necessary, add a subsection “Migration notes” explaining to users how to adjust to changes in the release.</p></li>
+</ul>
+<p>For example, the top of the file should look like:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Before editing</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh">Next release</span>
+<span class="gh">============</span>
+
+<span class="gh">All changes</span>
+<span class="gh">-----------</span>
+
+<span class="m">-</span> Description of a change (<span class="na">:pull:</span><span class="nv">`9999`</span>).
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">After editing</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="cp">.. Next release</span>
+<span class="cp">.. ============</span>
+
+<span class="cp">.. All changes</span>
+<span class="cp">.. -----------</span>
+
+<span class="p">..</span> <span class="nt">_v99.98.0:</span>
+
+<span class="gh">v99.98.0 (2035-10-12)</span>
+<span class="gh">=====================</span>
+
+Here is a description of the release.
+
+<span class="gh">Migration notes</span>
+<span class="gh">---------------</span>
+
+Here is guidance on how to adjust to the release.
+
+<span class="gh">All changes</span>
+<span class="gh">-----------</span>
+
+<span class="m">-</span> Description of a change (<span class="na">:pull:</span><span class="nv">`9999`</span>).
+</pre></div>
+</div>
+</div>
+<p>Build the docs locally to ensure any ReST markup in these additions renders correctly.</p>
+</li>
+<li><p>Make a commit with a message like “Mark v&lt;version&gt; in release notes”.</p></li>
+<li><p>Tag the release candidate version, i.e. with a <code class="docutils literal notranslate"><span class="pre">rcN</span></code> suffix, and push:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git tag v1.2.3rc1
+$ git push --tags origin main
+</pre></div>
+</div>
+</li>
+<li><p>Check:</p>
+<ul class="simple">
+<li><p>at <a class="reference external" href="https://github.com/iiasa/message_ix/actions/workflows/publish.yaml">https://github.com/iiasa/message_ix/actions/workflows/publish.yaml</a> (or <a class="reference external" href="https://github.com/iiasa/ixmp/actions/workflows/publish.yaml">ixmp</a>) that the workflow completes: the package builds successfully and is published to TestPyPI.</p></li>
+<li><p>at <a class="reference external" href="https://test.pypi.org/project/message-ix/">https://test.pypi.org/project/message-ix/</a> (or <a class="reference external" href="https://test.pypi.org/project/ixmp/">ixmp</a>) that:</p>
+<ul>
+<li><p>The package can be downloaded, installed and run.</p></li>
+<li><p>The README is rendered correctly.</p></li>
+</ul>
+</li>
+</ul>
+<p>Address any warnings or errors that appear.
+If needed, make a new commit.
+Go back to step (2), incrementing the release candidate number, e.g. from <code class="docutils literal notranslate"><span class="pre">rc1</span></code> to <code class="docutils literal notranslate"><span class="pre">rc2</span></code>.</p>
+</li>
+<li><p>(optional) Tag the release itself and push:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git tag v&lt;version&gt;
+$ git push --tags origin main
+</pre></div>
+</div>
+<p>This step (but <em>not</em> step (4)) can be performed directly on GitHub; see (7), next.</p>
+</li>
+<li><p>Visit <a class="reference external" href="https://github.com/iiasa/message-ix/releases">https://github.com/iiasa/message-ix/releases</a> (or <a class="reference external" href="https://github.com/iiasa/ixmp/releases">ixmp</a>) and mark the new release: either using the pushed tag from (6), or by creating the tag and release simultaneously.</p>
+<p>For the description, provide a link to the section in the “What’s New” page of the documentation that corresponds to the new release, using the anchor added in (2), above.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>See [“What&#39;s New”](https://docs.messageix.org/en/stable/whatsnew.html#v99-98-0) in the documentation for a list of all changes.
+</pre></div>
+</div>
+</li>
+<li><p>Check at <a class="reference external" href="https://github.com/iiasa/message_ix/actions/workflows/publish.yaml">https://github.com/iiasa/message_ix/actions/workflows/publish.yaml</a> (or <a class="reference external" href="https://github.com/iiasa/ixmp/actions/workflows/publish.yaml">ixmp</a>) and <a class="reference external" href="https://pypi.org/project/message-ix/">https://pypi.org/project/message-ix/</a> (or <a class="reference external" href="https://pypi.org/project/ixmp/">ixmp</a>) that the distributions are published.</p></li>
+<li><p>Update on conda-forge.
+A PR should automatically be opened by a bot after the GitHub release (sometimes this takes up to 30 minutes).</p>
+<ol class="arabic simple">
+<li><p>Confirm that any new dependencies are added.
+The minimum versions in <code class="file docutils literal notranslate"><span class="pre">meta.yaml</span></code> should match the versions in <code class="file docutils literal notranslate"><span class="pre">setup.cfg</span></code>.</p></li>
+<li><p>Ensure that tests pass and complete any other checklist items.</p></li>
+<li><p>Merge the PR.</p></li>
+<li><p>Check that the new package version appears on conda-forge. This may take up to several hours.</p></li>
+</ol>
+</li>
+<li><p>Announce the release(s) on our mailing list/Google group and/or on Twitter.
+Copy the text from the What’s New page of the built documentation.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="version.html" class="btn btn-neutral float-left" title="Versions and releases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Developing tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

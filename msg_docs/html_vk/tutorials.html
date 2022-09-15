@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorials &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage in publications, projects, and tools" href="usage.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-tutorial-files">Getting tutorial files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tutorials">Running tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-anaconda">Using Anaconda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#from-the-command-line">From the command line</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#westeros-electrified">Westeros Electrified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#austrian-energy-system">Austrian energy system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-reference">Code reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tutorials.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorials">
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline"></a></h1>
+<p>To get started with MESSAGE<em>ix</em>, the following tutorials are provided as
+<a class="reference external" href="https://jupyter.org/">Jupyter notebooks</a>, which combine code, sample output,
+and explanatory text.</p>
+<p>A static, non-interactive version of each notebook can be viewed online using
+the links below. In order to execute the tutorial code or make modifications,
+read the <a class="reference internal" href="#preparation">Preparation</a> section, next.</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline"></a></h2>
+<p>The tutorials refer to terms and concepts from energy systems research (i.e.
+how they are measured and modeled mathematically) and to scientific programming
+languages and tools (i.e. Python/R language syntax and popular packages in
+either language)—however, they <strong>do not</strong> provide a full introduction to these.
+Read the <a class="reference internal" href="prereqs.html"><span class="doc">pre-requisite knowledge</span></a> documentation page for an
+outline of things you should learn first, in order to fully understand the
+tutorials.</p>
+<section id="getting-tutorial-files">
+<h3>Getting tutorial files<a class="headerlink" href="#getting-tutorial-files" title="Permalink to this headline"></a></h3>
+<p>If you installed MESSAGE<em>ix</em> from source, all notebooks are in the <code class="docutils literal notranslate"><span class="pre">tutorial</span></code>
+directory.</p>
+<p>If you installed MESSAGE<em>ix</em> using Anaconda or <strong class="program">pip</strong>, download the
+notebooks using the <code class="docutils literal notranslate"><span class="pre">message-ix</span></code> command-line program. In a command prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ message-ix dl /path/to/tutorials
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you installed <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code> into a specific conda environment, that
+environment must be active in order for your system to find the
+<code class="docutils literal notranslate"><span class="pre">message-ix</span></code> command-line program, and also to run the Jupyter notebooks.
+Activate the environment <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment">as described</a> in the conda documentation; for
+instance, if you used the name <code class="docutils literal notranslate"><span class="pre">message_env</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate message_env
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the tutorials matching your installed version of MESSAGE<em>ix</em> are
+downloaded. To download a different version, add e.g. <code class="docutils literal notranslate"><span class="pre">--tag</span> <span class="pre">v1.2.0</span></code> to
+the above command. To download the tutorials from the development version,
+add <code class="docutils literal notranslate"><span class="pre">--branch</span> <span class="pre">main</span></code>.</p>
+</div>
+</section>
+<section id="running-tutorials">
+<h3>Running tutorials<a class="headerlink" href="#running-tutorials" title="Permalink to this headline"></a></h3>
+<section id="using-anaconda">
+<h4>Using Anaconda<a class="headerlink" href="#using-anaconda" title="Permalink to this headline"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">nb_conda</span></code> package is required. It should be installed by default with
+Anaconda. If it was not, install it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install nb_conda
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Open “Jupyter Notebooks” from Anaconda’s “Home” tab (or directly if you have
+the option).</p></li>
+<li><p>Choose and open a tutorial notebook.</p></li>
+<li><p>Each notebook requires a <em>kernel</em> that executes code interactively. Check
+that the kernel matches your conda environment, and if necessary change
+kernels with the menu, e.g. <cite>Kernel</cite> → <cite>Change Kernel</cite> → <cite>Python
+[conda root]</cite>.</p></li>
+</ol>
+</section>
+<section id="from-the-command-line">
+<h4>From the command line<a class="headerlink" href="#from-the-command-line" title="Permalink to this headline"></a></h4>
+<ol class="arabic">
+<li><p>Navigate to the tutorial folder. For instance, if <code class="docutils literal notranslate"><span class="pre">message-ix</span> <span class="pre">dl</span></code> was used
+above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /path/to/tutorials
+</pre></div>
+</div>
+</li>
+<li><p>Start the Jupyter notebook:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="westeros-electrified">
+<h2>Westeros Electrified<a class="headerlink" href="#westeros-electrified" title="Permalink to this headline"></a></h2>
+<p>The <em>Westeros Electrified</em> tutorial series demonstrates how to:</p>
+<ul class="simple">
+<li><p>create a minimal model that represents a very simple energy system,</p></li>
+<li><p>add extra detail / constraints to this representation, and</p></li>
+<li><p>post-process (analyze, visualize, or ‘report’) the results.</p></li>
+</ul>
+<p>The following list groups the tutorials by topic.
+For new or beginner users, the following sequence of six tutorials (also marked
+with ⭐, below) requires the lowest amount of background knowledge and is
+sufficient for a basic introduction:</p>
+<blockquote>
+<div><p>1 — 2.1 — 2.2 — 3.1 — 3.2.1</p>
+</div></blockquote>
+<p>The remaining tutorials require deeper energy systems knowledge; greater
+scientific programming skills; and/or relate to more advanced uses of the
+framework, such as used in global research applications of MESSAGE<em>ix</em>.</p>
+<ol class="arabic">
+<li><p>⭐ Build the baseline model (<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_baseline.ipynb">westeros/westeros_baseline.ipynb</a>).</p></li>
+<li><p>Add extra detail and constraints to the model:</p>
+<ol class="arabic">
+<li><p>⭐ Emissions:</p>
+<ol class="arabic simple">
+<li><p>Introduce emissions and a bound on the emissions
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_emissions_bounds.ipynb">westeros/westeros_emissions_bounds.ipynb</a>).</p></li>
+<li><p>Introduce taxes on emissions
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_emissions_taxes.ipynb">westeros/westeros_emissions_taxes.ipynb</a>).</p></li>
+</ol>
+</li>
+<li><p>⭐ Supply of resources:</p>
+<p>Add a fossil-resource supply curve for the coal power plant,
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_fossil_resource.ipynb">westeros/westeros_fossil_resource.ipynb</a>).</p>
+</li>
+<li><p>Renewables and integration constraints:</p>
+<ol class="arabic simple">
+<li><p>Represent both coal and wind electricity using a “firm capacity”
+formulation (<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_firm_capacity.ipynb">westeros/westeros_firm_capacity.ipynb</a>): each
+generation technology can supply some firm capacity, but the variable,
+renewable technology (wind) supplies less than coal.</p></li>
+<li><p>Represent coal and wind electricity using a different, “flexibility
+requirement” formulation
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_flexible_generation.ipynb">westeros/westeros_flexible_generation.ipynb</a>), wherein wind
+<em>requires</em> and coal <em>supplies</em> flexibility.</p></li>
+<li><p>Add a renewable-resource supply curve for the wind power plant,
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_renewable_resource.ipynb">westeros/westeros_renewable_resource.ipynb</a>).</p></li>
+</ol>
+</li>
+<li><p>Sub-annual time resolution:</p>
+<p>Represent variability in energy supply and demand by adding sub-annual
+time resolution, e.g. winter and summer
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_seasonality.ipynb">westeros/westeros_seasonality.ipynb</a>).</p>
+</li>
+<li><p>Constraints:</p>
+<ol class="arabic simple">
+<li><p>Using share constraints to depict policies, i.e. require renewables to
+supply a certain share of total electricity generation
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_share_constraint.ipynb">westeros/westeros_share_constraint.ipynb</a>).</p></li>
+<li><p>Add soft constraints for activity related dynamic constraints
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_soft_constraints.ipynb">westeros/westeros_soft_constraints.ipynb</a></p></li>
+</ol>
+</li>
+<li><p>Add-on technologies:</p>
+<p>Add the possibility of co-generation for the coal power plant, by
+allowing it to produce heat via a passout-turbine
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_addon_technologies.ipynb">westeros/westeros_addon_technologies.ipynb</a>).</p>
+</li>
+<li><p>Use parameters to represent the historical characteristics of the energy
+system (<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_historical_new_capacity.ipynb">westeros/westeros_historical_new_capacity.ipynb</a>).</p></li>
+</ol>
+</li>
+<li><p>Use other features of <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">ixmp</span></code>:</p>
+<ol class="arabic simple">
+<li><p>⭐ After the MESSAGE model has solved, use the <a class="reference internal" href="reporting.html#module-message_ix.reporting" title="message_ix.reporting"><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix.reporting</span></code></a>
+module to ‘report’ results, e.g. do post-processing, plotting, and other
+calculations (<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_report.ipynb">westeros/westeros_report.ipynb</a>).</p></li>
+<li><p>Build the baseline scenario using data stored in Excel files to
+populate sets and parameters:</p>
+<ol class="arabic simple">
+<li><p>⭐ Export data to file and import the data to create a new scenario
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_baseline_using_xlsx_import_part1.ipynb">westeros/westeros_baseline_using_xlsx_import_part1.ipynb</a>).</p></li>
+<li><p>Import and combine data from multiple files to create a new scenario
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/westeros/westeros_baseline_using_xlsx_import_part2.ipynb">westeros/westeros_baseline_using_xlsx_import_part2.ipynb</a>).</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="austrian-energy-system">
+<span id="austria-tutorials"></span><h2>Austrian energy system<a class="headerlink" href="#austrian-energy-system" title="Permalink to this headline"></a></h2>
+<p>These tutorials demonstrate a stylized representation of a national electricity
+sector model, with several fossil and renewable power plant types.</p>
+<ol class="arabic simple">
+<li><p>Prepare the base model version, in Python
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/austria.ipynb">Austrian_energy_system/austria.ipynb</a>)
+or in R (<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/R_austria.ipynb">Austrian_energy_system/R_austria.ipynb</a>).</p></li>
+<li><p>Plot results, in Python
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/austria_load_scenario.ipynb">Austrian_energy_system/austria_load_scenario.ipynb</a>)
+or in R (<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/R_austria_load_scenario.ipynb">Austrian_energy_system/R_austria_load_scenario.ipynb</a>).</p></li>
+<li><p>Run a single policy scenario
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/austria_single_policy.ipynb">Austrian_energy_system/austria_single_policy.ipynb</a>).</p></li>
+<li><p>Run multiple policy scenarios. This tutorial has two notebooks:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>an introduction with some exercises
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/austria_multiple_policies.ipynb">Austrian_energy_system/austria_multiple_policies.ipynb</a>), and</p></li>
+<li><p>completed code for the exercises
+(<a class="reference external" href="https://github.com/iiasa/message_ix/blob/v3.5.0/tutorial/Austrian_energy_system/austria_multiple_policies-answers.ipynb">Austrian_energy_system/austria_multiple_policies-answers.ipynb</a>).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="code-reference">
+<h2>Code reference<a class="headerlink" href="#code-reference" title="Permalink to this headline"></a></h2>
+<p>The module <a class="reference internal" href="#module-message_ix.util.tutorial" title="message_ix.util.tutorial"><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix.util.tutorial</span></code></a> contains some helper code used to simplify the tutorials; see also <a class="reference internal" href="reporting.html#message_ix.reporting.computations.stacked_bar" title="message_ix.reporting.computations.stacked_bar"><code class="xref py py-func docutils literal notranslate"><span class="pre">reporting.computations.stacked_bar()</span></code></a>.</p>
+<span class="target" id="module-message_ix.util.tutorial"></span><dl class="py function">
+<dt class="sig sig-object py" id="message_ix.util.tutorial.prepare_plots">
+<span class="sig-prename descclassname"><span class="pre">message_ix.util.tutorial.</span></span><span class="sig-name descname"><span class="pre">prepare_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="reporting.html#message_ix.reporting.Reporter" title="message_ix.reporting.Reporter"><span class="pre">message_ix.reporting.Reporter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_costs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$/GWa'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#message_ix.util.tutorial.prepare_plots" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare <cite>rep</cite> to generate plots for tutorial energy models.</p>
+<p>Makes available several keys:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">activity</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">demand</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">extraction</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">fossil</span> <span class="pre">supply</span> <span class="pre">curve</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">capacity</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">new</span> <span class="pre">capacity</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span> <span class="pre">prices</span></code></p></li>
+</ul>
+<p>To control the contents of each plot, use <a class="reference internal" href="reporting.html#message_ix.reporting.Reporter.set_filters" title="message_ix.reporting.Reporter.set_filters"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_filters()</span></code></a> on <cite>rep</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.util.tutorial.solve_modified">
+<span class="sig-prename descclassname"><span class="pre">message_ix.util.tutorial.</span></span><span class="sig-name descname"><span class="pre">solve_modified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.core.Scenario"><span class="pre">message_ix.core.Scenario</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.util.tutorial.solve_modified" title="Permalink to this definition"></a></dt>
+<dd><p>Context manager for a cloned scenario.</p>
+<p>At the end of the block, the modified Scenario yielded by <a class="reference internal" href="#message_ix.util.tutorial.solve_modified" title="message_ix.util.tutorial.solve_modified"><code class="xref py py-func docutils literal notranslate"><span class="pre">solve_modified()</span></code></a> is
+committed, set as default, and solved. Use in a <code class="docutils literal notranslate"><span class="pre">with:</span></code> statement to make small
+modifications and leave a variable in the current scope with the solved scenario.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">solve_modified</span><span class="p">(</span><span class="n">base_scen</span><span class="p">,</span> <span class="s2">&quot;new name&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">s</span><span class="o">.</span><span class="n">add_par</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span>  <span class="c1"># Modify the scenario</span>
+<span class="gp">... </span>    <span class="c1"># `s` is solved at the end of the block</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>.Scenario</em> – Cloned from <cite>base</cite>, with the scenario name <cite>new_name</cite> and no solution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage in publications, projects, and tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

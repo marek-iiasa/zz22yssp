@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing to development &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Versions and releases" href="contrib/version.html" />
+    <link rel="prev" title="User guidelines and notice" href="notice.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contrib/version.html">Versions and releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contrib/release.html">Release procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contrib/tutorial.html">Developing tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contrib/cla.html">Contributor License Agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contrib/video.html">Recording video documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-issues-for-bugs-and-enhancements">File issues for bugs and enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute-code-via-github-prs">Contribute code via Github PRs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#choose-a-repository">1. Choose a repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fork-branch-and-open-a-pull-request">2. Fork, branch, and open a pull request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ensure-checks-pass">3. Ensure checks pass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review">4. Review</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#merge">5. Merge</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code-style">Code style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-issues-and-pull-requests">Manage issues and pull requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Contributing to development</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing-to-development">
+<h1>Contributing to development<a class="headerlink" href="#contributing-to-development" title="Permalink to this headline"></a></h1>
+<p>We welcome contributions to the code base and development of new features for the MESSAGE<em>ix</em> framework.
+This page contains guidelines for making such contributions.
+Each section requires some of the listed <a class="reference internal" href="prereqs.html"><span class="doc">prerequisite knowledge and skills</span></a>; use the links there to external resources about git, Github, Python, etc. to ensure you are able to understand and complete the steps.</p>
+<p>On this page:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#file-issues-for-bugs-and-enhancements" id="id5">File issues for bugs and enhancements</a></p></li>
+<li><p><a class="reference internal" href="#contribute-code-via-github-prs" id="id6">Contribute code via Github PRs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#choose-a-repository" id="id7">1. Choose a repository</a></p></li>
+<li><p><a class="reference internal" href="#fork-branch-and-open-a-pull-request" id="id8">2. Fork, branch, and open a pull request</a></p></li>
+<li><p><a class="reference internal" href="#ensure-checks-pass" id="id9">3. Ensure checks pass</a></p></li>
+<li><p><a class="reference internal" href="#review" id="id10">4. Review</a></p></li>
+<li><p><a class="reference internal" href="#merge" id="id11">5. Merge</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#code-style" id="id12">Code style</a></p>
+<ul>
+<li><p><a class="reference internal" href="#documentation" id="id13">Documentation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#manage-issues-and-pull-requests" id="id14">Manage issues and pull requests</a></p></li>
+</ul>
+</div>
+<p>On separate pages:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contrib/version.html">Versions and releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/release.html">Release procedure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/tutorial.html">Developing tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/cla.html">Contributor License Agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/video.html">Recording video documentation</a></li>
+</ul>
+</div>
+<section id="file-issues-for-bugs-and-enhancements">
+<h2><a class="toc-backref" href="#id5">File issues for bugs and enhancements</a><a class="headerlink" href="#file-issues-for-bugs-and-enhancements" title="Permalink to this headline"></a></h2>
+<p>We use Github <strong>issues</strong> for several purposes:</p>
+<ul class="simple">
+<li><p>Ask and answer <em>questions</em> about intended behaviour or issues running the framework or related models.</p></li>
+<li><p>Report <em>bugs</em>, i.e. unintended or undocumented behaviour.</p></li>
+<li><p>Request <em>changes</em> to exiting behaviour.</p></li>
+<li><p>Request specific <em>enhancements</em> and <em>new features</em>, both urgent and long-term/low-priority.</p></li>
+<li><p>Discuss and design of other improvements.</p></li>
+</ul>
+<p>Please search through open <em>and</em> closed issues for <em>both</em> the <a class="reference external" href="https://github.com/iiasa/message_ix/issues?q=is:issue">message_ix</a> and <a class="reference external" href="https://github.com/iiasa/ixmp/issues?q=is:issue">ixmp</a> repositories.
+Review any related issues.
+Then, if your issue is not found, <a class="reference external" href="https://github.com/iiasa/message_ix/issues/new">open a new one</a>.</p>
+</section>
+<section id="contribute-code-via-github-prs">
+<span id="contrib-pr"></span><h2><a class="toc-backref" href="#id6">Contribute code via Github PRs</a><a class="headerlink" href="#contribute-code-via-github-prs" title="Permalink to this headline"></a></h2>
+<section id="choose-a-repository">
+<h3><a class="toc-backref" href="#id7">1. Choose a repository</a><a class="headerlink" href="#choose-a-repository" title="Permalink to this headline"></a></h3>
+<p>Decide which part of the MESSAGE<em>ix</em> software stack is the appropriate location for your code:</p>
+<dl>
+<dt><code class="xref py py-mod docutils literal notranslate"><span class="pre">ixmp</span></code></dt><dd><p>Contributions not specific to MESSAGE<em>ix</em> model framework, e.g. that could be used for other, non-MESSAGE models.</p>
+<dl class="simple">
+<dt><code class="xref py py-mod docutils literal notranslate"><span class="pre">ixmp_source</span></code></dt><dd><p>Java / JDBC backend for <code class="docutils literal notranslate"><span class="pre">ixmp</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code></dt><dd><p>Contributions not specific to <em>any particular MESSAGEix</em> model instance.
+Additions to <code class="docutils literal notranslate"><span class="pre">message_ix</span></code> should be usable in any MESSAGE-scheme model.</p>
+</dd>
+<dt><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_data</span></code> or <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_doc</span></code></dt><dd><p>Contributions to the MESSAGE-GLOBIOM family of models, including the global model; and its documentation, respectively.</p>
+</dd>
+</dl>
+</section>
+<section id="fork-branch-and-open-a-pull-request">
+<h3><a class="toc-backref" href="#id8">2. Fork, branch, and open a pull request</a><a class="headerlink" href="#fork-branch-and-open-a-pull-request" title="Permalink to this headline"></a></h3>
+<p>Register a Github account, if you do not already have one.
+Fork the chosen repository to your own Github account.
+Create a branch with an appropriate name:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">all-lower-case-with-hyphens</span></code> —underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>) are slower to type; don’t use them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">issue/1234</span></code> if you are addressing a specific issue.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature/do-something</span></code> if you are adding a new feature.</p></li>
+<li><p>Don’t use the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch in your fork for a PR.
+This makes it hard for others to check out and play with your code.</p></li>
+</ul>
+<p>Open a PR (e.g. on <a class="reference external" href="https://github.com/iiasa/message_ix/pulls">message_ix</a>) to merge your code into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.
+The <code class="docutils literal notranslate"><span class="pre">message_ix</span></code> and <code class="docutils literal notranslate"><span class="pre">ixmp</span></code> repositories each have a template for the text of the PR that is designed to help you write a clear description.
+It includes:</p>
+<ul class="simple">
+<li><p>A title and one-sentence summary of the change.
+This is like the abstract of a publication: it should help a developer/reviewer/user quickly learn what the PR is about.</p></li>
+<li><p>Confirm that unit or integration tests have been added or revised to cover the changed code, and that the tests pass (see below).</p></li>
+<li><p>Confirm that documentation of the API and its usage is added or revised as necessary.</p></li>
+<li><p>Add a line to <code class="file docutils literal notranslate"><span class="pre">RELEASE_NOTES.rst</span></code> describing the changes (use the same title or one-sentence summary as above) and linking to the PR.</p></li>
+</ul>
+<p>Optionally:</p>
+<ul class="simple">
+<li><p>Assign yourself and anyone else who will actually commit changes to the PR branch, or be actively involved in discussing/designing the code.</p></li>
+<li><p>Include a longer description of the design, or any changes whose purpose is not clear by inspecting code.</p></li>
+<li><p>Put “WIP:” or the construction sign Unicode character (🚧) at the start of the PR title to indicate “work in progress” while you continue to add commits; or use GitHub’s <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests#draft-pull-requests">‘draft’ pull requests</a> feature.
+This is good development practice: it ensures the automatic checks pass as you add to the code on your branch.</p></li>
+</ul>
+</section>
+<section id="ensure-checks-pass">
+<h3><a class="toc-backref" href="#id9">3. Ensure checks pass</a><a class="headerlink" href="#ensure-checks-pass" title="Permalink to this headline"></a></h3>
+<p>MESSAGE<em>ix</em> has several kinds of automatic, or <em>continuous integration</em>, checks:</p>
+<ul>
+<li><p>The <a class="reference external" href="https://github.com/cla-assistant/">CLA Assistant</a> ensures you have signed the <a class="reference internal" href="contrib/cla.html"><span class="doc">Contributor License Agreement</span></a> (follow link for text).
+All contributors are required to sign the CLA before any pull request can be reviewed.
+This ensures that all future users can benefit from your contribution, and that your contributions do not infringe on anyone else’s rights.</p></li>
+<li><p>GitHub Actions is used to run several <em>workflows</em>.
+These are defined by YAML files in <code class="file docutils literal notranslate"><span class="pre">.github/workflows/</span></code>:</p>
+<dl class="simple">
+<dt>pytest</dt><dd><p>This workflow runs all Python and R tests; on Linux, macOS, and Windows; and for multiple versions of Python.</p>
+</dd>
+<dt>lint</dt><dd><p>This workflow checks for code style and other details:</p>
+<ul class="simple">
+<li><p>“Lint with flake8”: checks that <a class="reference internal" href="#id4">Code style</a> is met.</p></li>
+<li><p>“Test package build”: checks that the Python package for upload to PyPI, can be built cleanly and without errors.</p></li>
+<li><p>“Test documentation build”: checks that the documentation can be built without fatal errors.</p></li>
+</ul>
+</dd>
+<dt>nightly</dt><dd><p>These tests run daily at 05:00 UTC.
+They download a particular package of full-scale, MESSAGEix-GLOBIOM global model scenarios from IIASA servers.
+Each scenario’s outputs are compared to an expected value listed in <code class="file docutils literal notranslate"><span class="pre">message_ix/tests/data/scenarios.yaml</span></code>.
+PRs that touch the GAMS code may cause the these objective function values to change; the values <strong>must</strong> be updated as part of such PRs.
+See the comments in the file for how to temporarily enable these checks for every commit on a PR branch.</p>
+</dd>
+<dt>anaconda, miniconda</dt><dd><p>These workflows check that the package can be installed from conda-forge using Anaconda and Miniconda, respectively, on Windows only.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Resolve any non-passing checks—seeking help if needed.</p>
+<p>If your PR updates the documentation, the <code class="docutils literal notranslate"><span class="pre">lint</span></code> check will confirm that it can be built.
+However, you should also <em>manually</em> build and view the HTML documentation on your machine to confirm that the generated HTML is as expected, and address any warnings generated by Sphinx during the build phase.
+See <code class="docutils literal notranslate"><span class="pre">doc/README.rst</span></code>.</p>
+</section>
+<section id="review">
+<h3><a class="toc-backref" href="#id10">4. Review</a><a class="headerlink" href="#review" title="Permalink to this headline"></a></h3>
+<p>Using the GitHub sidebar on your PR, request a review from another MESSAGE<em>ix</em> contributor.
+GitHub suggests reviewers; optionally, contact the IIASA ECE Program to ask who should review your code.</p>
+<ul class="simple">
+<li><p>If you want them to follow along with progress, tag them in the PR description, like “FYI &#64;Alice &#64;Bob”.</p></li>
+<li><p>Only formally request review once the code is ready to review.
+Doing this sends e-mail and other notifications (e.g. in Slack, the “Pull Reminders” bot sends notices every day).
+If the code is not yet complete and ready for review, these notifications are noise.</p></li>
+</ul>
+<p>Address any comments raised by the reviewer.</p>
+</section>
+<section id="merge">
+<h3><a class="toc-backref" href="#id11">5. Merge</a><a class="headerlink" href="#merge" title="Permalink to this headline"></a></h3>
+<p>GitHub provides <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges">three ways to incorporate a pull request</a>: merge, rebase, and squash.
+Current practice for the <code class="docutils literal notranslate"><span class="pre">ixmp</span></code>, <code class="docutils literal notranslate"><span class="pre">message_ix</span></code>, and <code class="docutils literal notranslate"><span class="pre">message_data</span></code> repositories is:</p>
+<ul>
+<li><p>Use <strong>squash and merge</strong>…</p>
+<ul class="simple">
+<li><p>if the commit history for the PR is “messy”, e.g. there are many merge commits from other branches, or the author did not write well-formatted commit messages (see “Code style”, below).</p></li>
+<li><p>if the PR is very old, i.e. it starts at an old commit on <code class="docutils literal notranslate"><span class="pre">main</span></code>. However, it is better to rebase the PR branch on the HEAD of <code class="docutils literal notranslate"><span class="pre">main</span></code> and then use a merge commit (below).</p></li>
+</ul>
+</li>
+<li><p>Use <strong>rebase and merge</strong>…</p>
+<ul class="simple">
+<li><p>if the PR is only one or a few commits that are obviously related.</p></li>
+<li><p>if the PR does not involve user-facing changes, i.e. does not need to be linked from the release notes.</p></li>
+</ul>
+</li>
+<li><p>Use <strong>merge pull request</strong> (also written “create a merge commit”) in all other cases.</p>
+<p>PR branches <em>should</em> be rebased on the HEAD of <code class="docutils literal notranslate"><span class="pre">main</span></code> before merging.
+This is because some git-based tools will display commits from <code class="docutils literal notranslate"><span class="pre">main</span></code> and the PR branch interleaved if their dates and times are mixed, which makes it harder to read the commit history.
+Rebasing avoids this problem by ensuring each PR’s commits are displayed together &amp; in sequence.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="code-style">
+<span id="id4"></span><h2><a class="toc-backref" href="#id12">Code style</a><a class="headerlink" href="#code-style" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>For both <strong>commit messages</strong> and <strong>pull request (PR) titles</strong>, memorize and use the <a class="reference external" href="https://chris.beams.io/posts/git-commit/#seven-rules">“7 rules of a great Git commit message”</a>.</p></li>
+<li><p><strong>Python</strong> code:</p>
+<ul>
+<li><p>Follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/#naming-conventions">PEP 8 naming conventions</a>.</p></li>
+<li><p>Apply the following to all code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">isort</span> <span class="o">-</span><span class="n">rc</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">black</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">mypy</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">flake8</span>
+</pre></div>
+</div>
+<p>Links to the documentation for these tools:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/isort/">isort</a>: sorts import lines at the top of code files in a consistent way.</p></li>
+<li><p><a class="reference external" href="https://black.readthedocs.io">black</a>: applies consistent code style &amp; formatting.
+Plugins are available for popular code editors.</p></li>
+<li><p><a class="reference external" href="https://mypy.readthedocs.io">mypy</a>: checks typing for inconsistencies.</p></li>
+<li><p><a class="reference external" href="https://flake8.pycqa.org">flake8</a>: check code style against <a class="reference external" href="https://www.python.org/dev/peps/pep-0008">PEP 8</a>.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">lint</span></code> continuous integration workflow runs these on every pull request.
+PRs that fail the checks must be corrected before they can be merged.</p>
+</li>
+<li><p>Add type hints to new or changed functions, methods, and global variables.</p></li>
+</ul>
+</li>
+<li><p><strong>GAMS</strong> code:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Wrap lines at 121 characters, except for inline documentation (see above).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>R</strong> code: follow the style of the existing code base.</p></li>
+<li><p>Jupyter notebooks (<code class="file docutils literal notranslate"><span class="pre">.ipynb</span></code>): see <a class="reference internal" href="contrib/tutorial.html"><span class="doc">Developing tutorials</span></a>.</p></li>
+<li><p>Other (file names, CLI, etc.): follow the style of the existing code base, e.g.:</p>
+<ul class="simple">
+<li><p>Use lower-case file names and extensions.</p></li>
+<li><p>Except for Python source files, prefer hyphens to underscores.</p></li>
+</ul>
+</li>
+</ul>
+<section id="documentation">
+<h3><a class="toc-backref" href="#id13">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p>Write documentation in ReStructuredText formats for:</p>
+<ol class="arabic simple">
+<li><p>Python docstrings.</p></li>
+<li><p>Documentation pages, <code class="file docutils literal notranslate"><span class="pre">doc/*.rst</span></code>.</p></li>
+<li><p>Inline documentation in <code class="file docutils literal notranslate"><span class="pre">message_ix/model/*.gms</span></code> files.</p></li>
+</ol>
+<p>For (2) and (3), start each sentence on a new line, and do not hard-wrap sentences.
+For (1), wrap at the same 88 characters as <strong class="command">black</strong> enforces for code.</p>
+</li>
+<li><p>Ensure Sphinx does not give warnings about ReST syntax for new or modified documentation.</p></li>
+<li><p>Use <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html#module-sphinx.ext.intersphinx" title="(in Sphinx v6.0.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code></a> (click for docs) to create cross-links within one project’s documentation, or across projects.</p>
+<ul class="simple">
+<li><p>Understand the use of the <code class="docutils literal notranslate"><span class="pre">~</span></code> and <code class="docutils literal notranslate"><span class="pre">.</span></code> characters to resolve references across the project. See <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#xref-syntax" title="(in Sphinx v6.0.0)"><span>Cross-referencing syntax</span></a> in the Sphinx docs.</p></li>
+<li><p>See example usage in existing code.</p></li>
+<li><p>Check that intersphinx links are correctly resolved, by building the docs and attempting to click new or modified links.</p></li>
+</ul>
+</li>
+<li><p>Write docstrings in the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a> style.
+This implies also <a class="reference external" href="https://peps.python.org/pep-0257/">PEP 257</a>; see in particular the format for <a class="reference external" href="https://peps.python.org/pep-0257/#multi-line-docstrings">multi-line docstrings</a>.</p>
+<p>Use single backticks to refer to function arguments, and asterisks for italics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">foo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bar</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Perform some action.</span>
+
+<span class="sd">    If `foo` and `bar` have the same value, ``42.1`` is returned. *Nice!*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html" title="(in Sphinx v6.0.0)"><span>reStructuredText Primer</span></a> in the Sphinx docs.</p></li>
+<li><p><a class="reference external" href="https://docutils.sourceforge.io/docs/user/rst/quickref.html">https://docutils.sourceforge.io/docs/user/rst/quickref.html</a></p></li>
+</ul>
+</section>
+</section>
+<section id="manage-issues-and-pull-requests">
+<h2><a class="toc-backref" href="#id14">Manage issues and pull requests</a><a class="headerlink" href="#manage-issues-and-pull-requests" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>Assign an issue or PRs to the person(s) who must take the next action towards completing it.
+For example:</p>
+<ul class="simple">
+<li><p>Comment on the issue to provide information/decisions needed to move forward.</p></li>
+<li><p>Implement the requested changes in code.</p></li>
+</ul>
+<p>This might be different from the person who opened the issue/PR.</p>
+</li>
+<li><p>Use the GitHub auto-linking feature to make clear the connection between related issues and PRs.</p></li>
+<li><p>Look at the labels, milestones, and projects in the right sidebar.
+Associate the issue with the correct one(s).</p></li>
+<li><p>Follow-up on old issues (ones with no activity for a month or more):</p>
+<ul class="simple">
+<li><p>Ask (in a new comment, on Slack, in person) the assignee or last commenter what the status is.</p></li>
+<li><p>Close or re-assign, with a comment that describes your reasoning.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notice.html" class="btn btn-neutral float-left" title="User guidelines and notice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contrib/version.html" class="btn btn-neutral float-right" title="Versions and releases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

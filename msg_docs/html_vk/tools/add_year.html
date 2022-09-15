@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add model years to an existing Scenario &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Postprocessing and reporting" href="../reporting.html" />
+    <link rel="prev" title="Efficiency - output- vs. input defined technologies" href="../efficiency.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add model years to an existing Scenario</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-details">Technical details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-message_ix.tools.add_year">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Add model years to an existing Scenario</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tools/add_year.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-model-years-to-an-existing-scenario">
+<h1>Add model years to an existing Scenario<a class="headerlink" href="#add-model-years-to-an-existing-scenario" title="Permalink to this headline"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>This tool adds new modeling years to an existing <a class="reference internal" href="../api.html#message_ix.Scenario" title="message_ix.Scenario"><code class="xref py py-class docutils literal notranslate"><span class="pre">message_ix.Scenario</span></code></a> (hereafter “reference scenario”). For instance, in a scenario define with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="p">[</span><span class="mi">690</span><span class="p">]</span>
+<span class="n">model_horizon</span> <span class="o">=</span> <span class="p">[</span><span class="mi">700</span><span class="p">,</span> <span class="mi">710</span><span class="p">,</span> <span class="mi">720</span><span class="p">]</span>
+<span class="n">sc_ref</span><span class="o">.</span><span class="n">add_horizon</span><span class="p">(</span>
+    <span class="n">year</span><span class="o">=</span><span class="n">history</span> <span class="o">+</span> <span class="n">model_horizon</span><span class="p">,</span>
+    <span class="n">firstmodelyear</span><span class="o">=</span><span class="n">model_horizon</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>…additional years can be added after importing the add_year function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">message_ix.tools.add_year</span> <span class="kn">import</span> <span class="n">add_year</span>
+<span class="n">sc_new</span> <span class="o">=</span> <span class="n">message_ix</span><span class="o">.</span><span class="n">Scenario</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">sc_ref</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">sc_ref</span><span class="o">.</span><span class="n">scenario</span><span class="p">,</span>
+                             <span class="n">version</span><span class="o">=</span><span class="s1">&#39;new&#39;</span><span class="p">)</span>
+<span class="n">add_year</span><span class="p">(</span><span class="n">sc_ref</span><span class="p">,</span> <span class="n">sc_new</span><span class="p">,</span> <span class="p">[</span><span class="mi">705</span><span class="p">,</span> <span class="mi">712</span><span class="p">,</span> <span class="mi">718</span><span class="p">,</span> <span class="mi">725</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>At this point, <code class="docutils literal notranslate"><span class="pre">sc_new</span></code> will have the years [700, 705, 710, 712, 718, 720, 725], and original or interpolated data for all these years in all parameters.</p>
+<p>The tool operates by creating a new empty Scenario (hereafter “new scenario”) and:</p>
+<ul class="simple">
+<li><p>Copying all <strong>sets</strong> from the reference scenario, adding new time steps to relevant sets (e.g., adding 2025 between 2020 and 2030 in the set <code class="docutils literal notranslate"><span class="pre">year</span></code>)</p></li>
+<li><p>Copying all <strong>parameters</strong> from the reference scenario, adding new years to relevant parameters, and calculating missing values for the added years.</p></li>
+</ul>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>It can be used for any MESSAGE scenario, from tutorials, country-level, and global models.</p></li>
+<li><p>The new years can be consecutive, between existing years, and/or after the model horizon.</p></li>
+<li><p>The user can define for what regions and parameters the new years should be added. This saves time when adding the new years to only one parameter of the reference scenario, when other parameters have previously been successfully added to the new scenario.</p></li>
+</ul>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>The tool can be used either:</p>
+<ol class="arabic">
+<li><p>Directly from the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ message-ix \
+    --platform default
+    --model MESSAGE_Model \
+    --scenario baseline \
+    add-years
+    --years_new 2015,2025,2035,2045
+</pre></div>
+</div>
+<p>For the full list of input arguments, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ message-ix add-years --help
+</pre></div>
+</div>
+</li>
+<li><p>By calling the function <a class="reference internal" href="#message_ix.tools.add_year.add_year" title="message_ix.tools.add_year.add_year"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year()</span></code></a> from a Python script.</p></li>
+</ol>
+</section>
+<section id="technical-details">
+<h2>Technical details<a class="headerlink" href="#technical-details" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>An existing scenario is loaded and the desired new years are specified.</p></li>
+<li><p>A new (empty) scenario is created for adding the new years.</p></li>
+<li><p>The new years are added to the relevant sets, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">type_year</span></code>.</p>
+<ul class="simple">
+<li><p>The sets <code class="docutils literal notranslate"><span class="pre">firstmodelyear</span></code>, <code class="docutils literal notranslate"><span class="pre">lastmodelyear</span></code>, <code class="docutils literal notranslate"><span class="pre">baseyear_macro</span></code>, and <code class="docutils literal notranslate"><span class="pre">initializeyear_macro</span></code> are modified, if needed.</p></li>
+<li><p>The set <code class="docutils literal notranslate"><span class="pre">cat_year</span></code> is modified for the new years.</p></li>
+</ul>
+</li>
+<li><p>The new years are added to the index sets of relevant parameters, and the missing data for the new years are calculated based on interpolation of adjacent data points. The following steps are applied:</p>
+<ol class="loweralpha simple">
+<li><p>Each non-empty parameter is loaded from the reference scenario.</p></li>
+<li><p>The year-related indexes (0, 1, or 2) of the parameter are identified.</p></li>
+<li><p>The new years are added to the parameter, and the missing data is calculated based on the number of year-related indexes. For example:</p>
+<ul class="simple">
+<li><p>The parameter <code class="docutils literal notranslate"><span class="pre">inv_cost</span></code> has index <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code>, to which the new years are added.</p></li>
+<li><p>The parameter <code class="docutils literal notranslate"><span class="pre">output</span></code> has indices <code class="docutils literal notranslate"><span class="pre">year_act</span></code> and <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code>. The new years are added to <em>both</em> of these dimensions.</p></li>
+</ul>
+</li>
+<li><p>Missing data is calculated by interpolation.</p></li>
+<li><p>For parameters with 2 year-related indices (e.g. <code class="docutils literal notranslate"><span class="pre">output</span></code>), a final check is applied so ensure that the vintaging is correct. This step is done based on the lifetime of each technology.</p></li>
+</ol>
+</li>
+<li><p>The changes are committed and saved to the new scenario.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The tool does not ensure that the new scenario will solve after adding the
+new years. The user needs to load the new scenario, check some key
+parameters (like bounds) and solve the new scenario.</p>
+</div>
+</section>
+<section id="module-message_ix.tools.add_year">
+<span id="api-reference"></span><h2>API reference<a class="headerlink" href="#module-message_ix.tools.add_year" title="Permalink to this headline"></a></h2>
+<p>Add model years to an existing Scenario.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.add_year">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">add_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstyear_new</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastyear_new</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">macro</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseyear_macro</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapol_neg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.add_year" title="Permalink to this definition"></a></dt>
+<dd><p>Add years to <em>sc_ref</em> to produce <em>sc_new</em>.</p>
+<p><a class="reference internal" href="#message_ix.tools.add_year.add_year" title="message_ix.tools.add_year.add_year"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year()</span></code></a> does the following:</p>
+<ol class="arabic simple">
+<li><p>calls <a class="reference internal" href="#message_ix.tools.add_year.add_year_set" title="message_ix.tools.add_year.add_year_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year_set()</span></code></a> to add and modify required sets.</p></li>
+<li><p>calls <a class="reference internal" href="#message_ix.tools.add_year.add_year_par" title="message_ix.tools.add_year.add_year_par"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year_par()</span></code></a> to add new years and modifications to each
+parameter if needed.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sc_ref</strong> (<a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/api.html#ixmp.Scenario" title="(in ixmp v3.5.1.dev7+ge795853)"><em>ixmp.Scenario</em></a>) – Reference scenario.</p></li>
+<li><p><strong>sc_new</strong> (<a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/api.html#ixmp.Scenario" title="(in ixmp v3.5.1.dev7+ge795853)"><em>ixmp.Scenario</em></a>) – New scenario.</p></li>
+<li><p><strong>yrs_new</strong> (<em>list of int</em>) – New years to be added.</p></li>
+<li><p><strong>firstyear_new</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – New first model year for new scenario.</p></li>
+<li><p><strong>macro</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Add new years to parameters of the MACRO model.</p></li>
+<li><p><strong>baseyear_macro</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – New base year for the MACRO model.</p></li>
+<li><p><strong>parameter</strong> (<em>list of str</em><em> or </em><em>'all'</em>) – Parameters for adding new years.</p></li>
+<li><p><strong>rewrite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Permit rewriting a parameter in new scenario when adding new years.</p></li>
+<li><p><strong>check_unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Harmonize the units for each commodity, if there is inconsistency
+across model years.</p></li>
+<li><p><strong>extrapol_neg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – When extrapolation produces negative values, replace with a multiple of
+the value for the previous timestep.</p></li>
+<li><p><strong>bound_extend</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Duplicate data from the previous timestep when there is only one data
+point for interpolation (e.g., permitting the extension of a bound to
+2025, when there is only one value in 2020).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.add_year_par">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">add_year_par</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yrs_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstyear_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapol_neg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.add_year_par" title="Permalink to this definition"></a></dt>
+<dd><p>Add new years to parameters.</p>
+<p>This function adds additional years to a parameter. The value of the
+parameter for additional years is calculated mainly by interpolating and
+extrapolating data from existing years.</p>
+<p>See <a class="reference internal" href="#message_ix.tools.add_year.add_year" title="message_ix.tools.add_year.add_year"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year()</span></code></a> for parameter descriptions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.add_year_set">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">add_year_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstyear_new</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastyear_new</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseyear_macro</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.add_year_set" title="Permalink to this definition"></a></dt>
+<dd><p>Add new years to sets.</p>
+<p><a class="reference internal" href="#message_ix.tools.add_year.add_year_set" title="message_ix.tools.add_year.add_year_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year_set()</span></code></a> adds additional years to an existing scenario, by
+starting to make a new scenario from scratch. After modification of the
+year-related sets, all other sets are copied from <em>sc_ref</em> to <em>sc_new</em>.</p>
+<p>See <a class="reference internal" href="#message_ix.tools.add_year.add_year" title="message_ix.tools.add_year.add_year"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_year()</span></code></a> for parameter descriptions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.interpolate_1d">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">interpolate_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yrs_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapol_neg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.interpolate_1d" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate data with one year dimension.</p>
+<p>This function receives a parameter data as a dataframe, and adds new data
+for the additonal years by interpolation and extrapolation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.3)"><em>pandas.DataFrame</em></a>) – The dataframe of the parameter to which new years to be added.</p></li>
+<li><p><strong>yrs_new</strong> (<em>list of int</em>) – New years to be added.</p></li>
+<li><p><strong>horizon</strong> (<em>list of int</em>) – The horizon of the reference scenario.</p></li>
+<li><p><strong>year_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The header of the column to which the new years should be added, e.g.
+<cite>‘year_act’</cite>.</p></li>
+<li><p><strong>value_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The header of the column containing values.</p></li>
+<li><p><strong>extrapolate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Allow extrapolation when a new year is outside the parameter years.</p></li>
+<li><p><strong>extrapol_neg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Allow negative values obtained by extrapolation.</p></li>
+<li><p><strong>bound_extend</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Allow extrapolation of bounds for new years</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.interpolate_2d">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">interpolate_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yrs_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tec_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">par_tec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapol_neg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_diff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.interpolate_2d" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate parameters with two dimensions related year.</p>
+<p>This function receives a dataframe that has 2 time-related columns (e.g.,
+“input” or “relation_activity”), and adds new data for the additonal years
+in both time-related columns by interpolation and extrapolation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.3)"><em>pandas.DataFrame</em></a>) – The dataframe of the parameter to which new years to be added.</p></li>
+<li><p><strong>yrs_new</strong> (<em>list of int</em>) – New years to be added.</p></li>
+<li><p><strong>horizon</strong> (<em>list of int</em>) – The horizon of the reference scenario.</p></li>
+<li><p><strong>year_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The header of the first column to which the new years should be added,
+e.g. <cite>‘year_vtg’</cite>.</p></li>
+<li><p><strong>year_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The header of the column to which the new years should be added, e.g.
+<cite>‘year_act’</cite>.</p></li>
+<li><p><strong>tec_list</strong> (<em>list of str</em>) – List of technologies in the parameter <code class="docutils literal notranslate"><span class="pre">technical_lifetime</span></code>.</p></li>
+<li><p><strong>par_tec</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.3)"><em>pandas.DataFrame</em></a>) – Parameter <code class="docutils literal notranslate"><span class="pre">technical_lifetime</span></code>.</p></li>
+<li><p><strong>value_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The header of the column containing values.</p></li>
+<li><p><strong>extrapolate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Allow extrapolation when a new year is outside the parameter years.</p></li>
+<li><p><strong>extrapol_neg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Allow negative values obtained by extrapolation.</p></li>
+<li><p><strong>year_diff</strong> (<em>list of int</em>) – List of model years with different time intervals before and after them</p></li>
+<li><p><strong>bound_extend</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Allow extrapolation of bounds for new years based on one data point</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.intpol">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">intpol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.intpol" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate between (<em>x1</em>, <em>y1</em>) and (<em>x2</em>, <em>y2</em>) at <em>x</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>pd.Series</em>) – </p></li>
+<li><p><strong>y2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>pd.Series</em>) – </p></li>
+<li><p><strong>x1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+<li><p><strong>x2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.mask_df">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">mask_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.mask_df" title="Permalink to this definition"></a></dt>
+<dd><p>Create a mask for removing extra values from <em>df</em>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.slice_df">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">slice_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.slice_df" title="Permalink to this definition"></a></dt>
+<dd><p>Slice a MultiIndex DataFrame and set a value to a specific level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – </p></li>
+<li><p><strong>idx</strong> (<em>list of indices</em>) – </p></li>
+<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>locator</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – </p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.tools.add_year.unit_uniform">
+<span class="sig-prename descclassname"><span class="pre">message_ix.tools.add_year.</span></span><span class="sig-name descname"><span class="pre">unit_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.tools.add_year.unit_uniform" title="Permalink to this definition"></a></dt>
+<dd><p>Make units in <em>df</em> uniform.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../efficiency.html" class="btn btn-neutral float-left" title="Efficiency - output- vs. input defined technologies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reporting.html" class="btn btn-neutral float-right" title="Postprocessing and reporting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

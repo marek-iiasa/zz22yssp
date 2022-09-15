@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parameter definition &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"ACT": "\\text{ACT}", "STORAGE": "\\text{STORAGE}", "STORAGECHARGE": "\\text{STORAGE_CHARGE}", "durationtimerel": "\\text{duration_time_rel}", "input": "\\text{input}", "maptimecommoditystorage": "\\text{map_time_commodity_storage}", "storageinitial": "\\text{storage_initial}", "storageselfdischarge": "\\text{storage_self_discharge}"}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MESSAGE core formulation" href="model_core.html" />
+    <link rel="prev" title="Years, periods, and time slices" href="../../time.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parameter definition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-parameters-of-the-messageix-implementation">General parameters of the MESSAGE<em>ix</em> implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-resources-section">Parameters of the <cite>Resources</cite> section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-demand-section">Parameters of the <cite>Demand</cite> section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-technology-section">Parameters of the <cite>Technology</cite> section</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#input-output-mapping-costs-and-engineering-specifications">Input/output mapping, costs and engineering specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bounds-on-capacity-and-activity">Bounds on capacity and activity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-constraints-on-new-capacity-and-activity">Dynamic constraints on new capacity and activity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters-for-the-add-on-technologies">Parameters for the add-on technologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters-for-representing-storage-solutions">Parameters for representing storage solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cost-parameters-for-soft-relaxations-of-dynamic-constraints">Cost parameters for ‘soft’ relaxations of dynamic constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#historical-capacity-and-activity-values">Historical capacity and activity values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auxiliary-investment-cost-parameters-and-multipliers">Auxiliary investment cost parameters and multipliers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-emission-section">Parameters of the <cite>Emission</cite> section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-land-use-model-emulator-section">Parameters of the <cite>Land-Use model emulator</cite> section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-share-constraints-section">Parameters of the <cite>Share Constraints</cite> section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-the-relations-section">Parameters of the <cite>Relations</cite> section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fixed-variable-values">Fixed variable values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#auxiliary-reporting-parameters">Auxiliary reporting parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../macro.html">Calibrate and tune MESSAGE-MACRO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Parameter definition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/model/MESSAGE/parameter_def.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page is generated from inline documentation in <code class="docutils literal notranslate"><span class="pre">MESSAGE\parameter_def.gms</span></code>.</p>
+</div>
+<section id="parameter-definition">
+<span id="parameter-def"></span><h1>Parameter definition<a class="headerlink" href="#parameter-definition" title="Permalink to this headline"></a></h1>
+<p>This file contains the definition of all parameters used in MESSAGE<em>ix</em>.</p>
+<p>In MESSAGE<em>ix</em>, all parameters are understood as yearly values, not as per (multi-year) period.
+This provides flexibility when changing the resolution of the model horizon (i.e., the set <code class="docutils literal notranslate"><span class="pre">year</span></code>).</p>
+<section id="general-parameters-of-the-messageix-implementation">
+<span id="section-parameter-general"></span><h2>General parameters of the MESSAGE<em>ix</em> implementation<a class="headerlink" href="#general-parameters-of-the-messageix-implementation" title="Permalink to this headline"></a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Parameters written in <strong>bold</strong> are auxiliary parameters
+that are either generated automatically when exporting a <a class="reference internal" href="../../api.html#message_ix.Scenario" title="message_ix.Scenario"><code class="xref py py-class docutils literal notranslate"><span class="pre">message_ix.Scenario</span></code></a> to gdx
+or that are computed during the <em>pre-processing</em> stage in GAMS (see the footnotes for more
+individual details). These are <strong>not</strong> meant to be edited through the API when editing scenarios.</p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+<th class="head"><p>Explanatory comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>interestrate</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Economy-wide interest rate or social discount rate</p></td>
+</tr>
+<tr class="row-odd"><td><p>duration_time</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>Duration of sub-annual time slices (relative to 1) <a class="footnote-reference brackets" href="#duration-time-year" id="id1">1</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>duration_period</strong> (<span class="math notranslate nohighlight">\(|y|\)</span>) <a class="footnote-reference brackets" href="#short-dur" id="id2">2</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Duration of multi-year period (in number of years) <a class="footnote-reference brackets" href="#year-auto" id="id3">3</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>duration_period_sum</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Number of years between two periods <a class="footnote-reference brackets" href="#df-auto" id="id4">4</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>duration_time_rel</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>Relative duration between sub-annual time slices <a class="footnote-reference brackets" href="#df-auto" id="id5">4</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>df_period</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Cumulative discount factor over period duration <a class="footnote-reference brackets" href="#df-auto" id="id6">4</a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>df_year</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Discount factor of the last year in the period <a class="footnote-reference brackets" href="#df-auto" id="id7">4</a></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="duration-time-year"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The element ‘year’ in the set of subannual time slices <code class="docutils literal notranslate"><span class="pre">time</span></code> has the value of 1.
+This value is assigned by default when creating a new <a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/api.html#ixmp.Scenario" title="(in ixmp v3.5.1.dev7+ge795853)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ixmp.Scenario</span></code></a> based on the <code class="docutils literal notranslate"><span class="pre">MESSAGE</span></code> scheme.</p>
+</dd>
+<dt class="label" id="short-dur"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>The short-hand notation <span class="math notranslate nohighlight">\(|y|\)</span> is used for the parameters <span class="math notranslate nohighlight">\(duration\_period_y\)</span>
+in the mathematical model documentation for exponents.</p>
+</dd>
+<dt class="label" id="year-auto"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>The values for this parameter are computed automatically when exporting a <code class="docutils literal notranslate"><span class="pre">MESSAGE</span></code>-scheme
+<a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/api.html#ixmp.Scenario" title="(in ixmp v3.5.1.dev7+ge795853)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ixmp.Scenario</span></code></a> to gdx.
+Note that in MESSAGE<em>ix</em>, the elements of the <code class="docutils literal notranslate"><span class="pre">year</span></code> set are understood to be the last year in a period.
+See <a class="reference internal" href="../../time.html"><span class="doc">Years, periods, and time slices</span></a>.</p>
+</dd>
+<dt class="label" id="df-auto"><span class="brackets">4</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>,<a href="#id6">3</a>,<a href="#id7">4</a>)</span></dt>
+<dd><p>These parameters are computed during the GAMS execution.</p>
+</dd>
+</dl>
+</section>
+<section id="parameters-of-the-resources-section">
+<span id="section-parameter-resources"></span><h2>Parameters of the <cite>Resources</cite> section<a class="headerlink" href="#parameters-of-the-resources-section" title="Permalink to this headline"></a></h2>
+<p>In MESSAGE<em>ix</em>, the volume of resources at the start of the model horizon is defined by <code class="docutils literal notranslate"><span class="pre">resource_volume</span></code>. The quantity of the
+resources that are extracted per year is dependent on two parameters. The first is <code class="docutils literal notranslate"><span class="pre">bound_extraction_up</span></code>, which constraints
+the maximum extraction of the resources (by grade) in a year. The second is <code class="docutils literal notranslate"><span class="pre">resource_remaining</span></code>, which is the maximum
+extraction of the remaining resources in a certain year, as a percentage. Extraction costs for resources are represented by
+<code class="docutils literal notranslate"><span class="pre">resource_cost</span></code> parameter.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>resource_volume</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>resource_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>resource_remaining</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>bound_extraction_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>commodity_stock <a class="footnote-reference brackets" href="#stock" id="id8">5</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>historical_extraction <a class="footnote-reference brackets" href="#hist" id="id9">6</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="stock"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
+<dd><p>Commodity stock refers to an exogenous (initial) quantity of commodity in stock. This parameter allows
+(exogenous) additions to the commodity stock over the model horizon, e.g., precipitation that replenishes the water table.</p>
+</dd>
+<dt class="label" id="hist"><span class="brackets">6</span><span class="fn-backref">(<a href="#id9">1</a>,<a href="#id30">2</a>,<a href="#id31">3</a>,<a href="#id32">4</a>,<a href="#id34">5</a>)</span></dt>
+<dd><p>Historical values of new capacity and activity can be used for parametrising the vintage structure
+of existing capacity and implement dynamic constraints in the first model period.</p>
+</dd>
+</dl>
+</section>
+<section id="parameters-of-the-demand-section">
+<span id="section-parameter-demand"></span><h2>Parameters of the <cite>Demand</cite> section<a class="headerlink" href="#parameters-of-the-demand-section" title="Permalink to this headline"></a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>demand [demand_fixed] <a class="footnote-reference brackets" href="#demand" id="id10">7</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>peak_load_factor <a class="footnote-reference brackets" href="#peakload" id="id11">8</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="demand"><span class="brackets"><a class="fn-backref" href="#id10">7</a></span></dt>
+<dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">demand</span></code> in a <code class="docutils literal notranslate"><span class="pre">MESSAGE</span></code>-scheme <code class="docutils literal notranslate"><span class="pre">ixmp.Scenario</span></code> is translated
+to the parameter <code class="docutils literal notranslate"><span class="pre">demand_fixed</span></code> in the MESSAGE<em>ix</em> implementation in GAMS. The variable <code class="docutils literal notranslate"><span class="pre">DEMAND</span></code> is introduced
+as an auxiliary reporting variable; it equals <code class="docutils literal notranslate"><span class="pre">demand_fixed</span></code> in a <cite>MESSAGE</cite>-standalone run and reports
+the final demand including the price response in an iterative <cite>MESSAGE-MACRO</cite> solution.</p>
+</dd>
+<dt class="label" id="peakload"><span class="brackets">8</span><span class="fn-backref">(<a href="#id11">1</a>,<a href="#id24">2</a>)</span></dt>
+<dd><p>The parameters <code class="docutils literal notranslate"><span class="pre">peak_load_factor</span></code> (maximum peak load factor for reliability constraint of firm capacity) and
+<code class="docutils literal notranslate"><span class="pre">reliability_factor</span></code> (reliability of a technology (per rating)) are based on the formulation proposed by Sullivan et al., 2013 <span id="id12">[<a class="reference internal" href="../../bibliography.html#id4" title="Patrick Sullivan, Volker Krey, and Keywan Riahi. Impacts of considering electric sector variability and reliability in the MESSAGE model. Energy Strategy Reviews, 1(3):157 - 163, 2013. doi:10.1016/j.esr.2013.01.001.">10</a>]</span>.
+It is used in <a class="reference internal" href="model_core.html#reliability-constraint"><span class="std std-ref">Reliability of installed capacity</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="parameters-of-the-technology-section">
+<span id="params-tech"></span><h2>Parameters of the <cite>Technology</cite> section<a class="headerlink" href="#parameters-of-the-technology-section" title="Permalink to this headline"></a></h2>
+<section id="input-output-mapping-costs-and-engineering-specifications">
+<h3>Input/output mapping, costs and engineering specifications<a class="headerlink" href="#input-output-mapping-costs-and-engineering-specifications" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 71%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>input <a class="footnote-reference brackets" href="#tecvintage" id="id13">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> |
+<code class="docutils literal notranslate"><span class="pre">node_origin</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">time_origin</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>output <a class="footnote-reference brackets" href="#tecvintage" id="id14">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> |
+<code class="docutils literal notranslate"><span class="pre">node_dest</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">time_dest</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>inv_cost <a class="footnote-reference brackets" href="#tecvintage" id="id15">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>fix_cost <a class="footnote-reference brackets" href="#tecvintage" id="id16">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>var_cost <a class="footnote-reference brackets" href="#tecvintage" id="id17">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>levelized_cost <a class="footnote-reference brackets" href="#levelizedcost" id="id18">10</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>construction_time <a class="footnote-reference brackets" href="#construction" id="id19">11</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>technical_lifetime</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>capacity_factor <a class="footnote-reference brackets" href="#tecvintage" id="id20">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>operation_factor <a class="footnote-reference brackets" href="#tecvintage" id="id21">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>min_utilization_factor <a class="footnote-reference brackets" href="#tecvintage" id="id22">9</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>rating_bin <a class="footnote-reference brackets" href="#rating" id="id23">12</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">rating</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>reliability_factor <a class="footnote-reference brackets" href="#peakload" id="id24">8</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">rating</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>flexibility_factor <a class="footnote-reference brackets" href="#flexfactor" id="id25">13</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">rating</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>renewable_capacity_factor <a class="footnote-reference brackets" href="#renewables" id="id26">14</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>renewable_potential <a class="footnote-reference brackets" href="#renewables" id="id27">14</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>emission_factor</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">emission</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="tecvintage"><span class="brackets">9</span><span class="fn-backref">(<a href="#id13">1</a>,<a href="#id14">2</a>,<a href="#id15">3</a>,<a href="#id16">4</a>,<a href="#id17">5</a>,<a href="#id20">6</a>,<a href="#id21">7</a>,<a href="#id22">8</a>)</span></dt>
+<dd><p>Fixed and variable cost parameters and technical specifications are indexed over both
+the year of construction (vintage) and the year of operation (actual).
+This allows to represent changing technology characteristics depending on the age of the plant.</p>
+</dd>
+<dt class="label" id="levelizedcost"><span class="brackets"><a class="fn-backref" href="#id18">10</a></span></dt>
+<dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">levelized_cost</span></code> is computed in the GAMS pre-processing under the assumption of
+full capacity utilization until the end of the technical lifetime.</p>
+</dd>
+<dt class="label" id="construction"><span class="brackets"><a class="fn-backref" href="#id19">11</a></span></dt>
+<dd><p>The construction time only has an effect on the investment costs; in MESSAGE<em>ix</em>,
+each unit of new-built capacity is available instantaneously at the beginning of the model period.</p>
+</dd>
+<dt class="label" id="rating"><span class="brackets"><a class="fn-backref" href="#id23">12</a></span></dt>
+<dd><p>Maximum share of technology in commodity use per rating. The upper bound of a contribution by any technology to the constraints on system reliability
+(<a class="reference internal" href="model_core.html#reliability-constraint"><span class="std std-ref">Reliability of installed capacity</span></a>) and flexibility (<a class="reference internal" href="model_core.html#flexibility-constraint"><span class="std std-ref">Equation SYSTEM_FLEXIBILITY_CONSTRAINT</span></a>) can depend on the share of the technology output in the total commodity use at
+a specific level.</p>
+</dd>
+<dt class="label" id="flexfactor"><span class="brackets"><a class="fn-backref" href="#id25">13</a></span></dt>
+<dd><p>Contribution of technologies towards operation flexibility constraint. It is used in <a class="reference internal" href="model_core.html#flexibility-constraint"><span class="std std-ref">Equation SYSTEM_FLEXIBILITY_CONSTRAINT</span></a>.</p>
+</dd>
+<dt class="label" id="renewables"><span class="brackets">14</span><span class="fn-backref">(<a href="#id26">1</a>,<a href="#id27">2</a>)</span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">renewable_capacity_factor</span></code> refers to the quality of renewable potential by grade and <code class="docutils literal notranslate"><span class="pre">renewable_potential</span></code> refers to the size of the renewable potential per grade.</p>
+</dd>
+</dl>
+</section>
+<section id="bounds-on-capacity-and-activity">
+<span id="section-parameter-bounds"></span><h3>Bounds on capacity and activity<a class="headerlink" href="#bounds-on-capacity-and-activity" title="Permalink to this headline"></a></h3>
+<p>The following parameters specify upper and lower bounds on new capacity, total installed capacity, and activity. The bounds
+on activity are implemented as the aggregate over all vintages in a specific period (<a class="reference internal" href="model_core.html#activity-bound-up"><span class="std std-ref">Equation ACTIVITY_BOUND_UP</span></a> and <a class="reference internal" href="model_core.html#activity-bound-lo"><span class="std std-ref">Equation ACTIVITY_BOUND_LO</span></a>).</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 71%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bound_new_capacity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>bound_new_capacity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>bound_total_capacity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>bound_total_capacity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>bound_activity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>bound_activity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dynamic-constraints-on-new-capacity-and-activity">
+<span id="section-parameter-dynamic-constraints"></span><h3>Dynamic constraints on new capacity and activity<a class="headerlink" href="#dynamic-constraints-on-new-capacity-and-activity" title="Permalink to this headline"></a></h3>
+<p>These parameters are used in the <a class="reference internal" href="model_core.html#dynamic-constraints"><span class="std std-ref">dynamic constraint equations</span></a> to limit the growth (or decline) of activity or of new capacity in each period, relative to the preceding period.
+The <code class="docutils literal notranslate"><span class="pre">soft_</span></code> parameters control ‘soft’ relaxation of these dynamic constraints, using the method of Keppo and Strubegger (2010) <span id="id28">[<a class="reference internal" href="../../bibliography.html#id5" title="Ilkka Keppo and Manfred Strubegger. Short term decisions for long term problems – The effect of foresight on model based energy systems analysis. Energy, 35(5):2033-2042, 2010. doi:10.1016/j.energy.2010.01.019.">5</a>]</span>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">growth_</span></code> and <code class="docutils literal notranslate"><span class="pre">soft_</span></code> parameters are expressed as <em>relative annual change</em> and are unitless.
+Because these are annual values, are compounded in the <a class="reference internal" href="model_core.html#dynamic-constraints"><span class="std std-ref">constraint equations</span></a> by <code class="docutils literal notranslate"><span class="pre">duration_period</span></code> (<span class="math notranslate nohighlight">\(|y|\)</span>) to obtain the relative <em>inter-period</em> change.</p>
+<p><strong>Example:</strong> a value of 0.05 for <code class="docutils literal notranslate"><span class="pre">growth_activity_up</span></code> sets an upper bound of <span class="math notranslate nohighlight">\(1 + 0.05 = 105\%\)</span> activity in one year relative to activity in the preceding year.
+In a period with duration <span class="math notranslate nohighlight">\(|y| = 5 \text{ years}\)</span>, the activity in the <a class="reference internal" href="../../time.html"><span class="doc">representative year</span></a> is bounded at <span class="math notranslate nohighlight">\((1.05)^5 = 128\%\)</span> of the activity in the representative year of the preceding period.</p>
+<p>Because these parameters do not have a <code class="docutils literal notranslate"><span class="pre">mode</span></code> (<span class="math notranslate nohighlight">\(m\)</span>) dimension, they cannot be used to constraint the activity/new capacity of <em>single modes</em> of technologies; only the total across all modes.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>initial_new_capacity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>growth_new_capacity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>soft_new_capacity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>initial_new_capacity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>growth_new_capacity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>soft_new_capacity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>initial_activity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>growth_activity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>soft_activity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>initial_activity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>growth_activity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>soft_activity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters-for-the-add-on-technologies">
+<span id="section-parameter-addon"></span><h3>Parameters for the add-on technologies<a class="headerlink" href="#parameters-for-the-add-on-technologies" title="Permalink to this headline"></a></h3>
+<p>The implementation of MESSAGE<em>ix</em> includes the functionality to introduce “add-on technologies” that are specifically
+linked to parent technologies. This feature can be used to model mitigation options (scrubber, cooling). Upper and
+lower bounds of add-on technologies are defined relative to the parent: <code class="docutils literal notranslate"><span class="pre">addon_up</span></code> and <code class="docutils literal notranslate"><span class="pre">addon_lo</span></code>, respectively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No default <code class="docutils literal notranslate"><span class="pre">addon_conversion</span></code> factor (conversion factor between add-on and parent technology activity) is set.
+This is to avoid default conversion factors of 1 being set for technologies with multiple modes, of which only a
+single mode should be linked to the add-on technology.</p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>addon_conversion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">type_addon</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>addon_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">type_addon</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>addon_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code> | <code class="docutils literal notranslate"><span class="pre">type_addon</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters-for-representing-storage-solutions">
+<span id="section-parameter-storage"></span><h3>Parameters for representing storage solutions<a class="headerlink" href="#parameters-for-representing-storage-solutions" title="Permalink to this headline"></a></h3>
+<p>The MESSAGE<em>ix</em> formulation includes “storage” solutions to model sub-annual, inter-temporal storage of commodities in each period.
+This feature can be used to model electricity storage (pumped hydro, batteries, compressed air energy storage, etc.), thermal energy storage,
+demand side management, and in general any technology for storing commodities (gas, hydrogen, water, etc.) over sub-annual timesteps.
+The user defines the chronological order of sub-annual time steps by assigning a number to them in parameter <code class="docutils literal notranslate"><span class="pre">time_order</span></code>.
+This order is used by storage equations to shift the stored commodity in a correct timeline, e.g., from Jan through to Dec, and not vice versa.
+The last sub-annual timestep is linked to the first one to close the loop of the year. Parameter <code class="docutils literal notranslate"><span class="pre">storage_initial</span></code> is to set an initial amount
+for the content of storage in any desirable timestep (optionally). This initial value is a cost-free stored media that storage can discharge
+in the same or following timesteps. <code class="docutils literal notranslate"><span class="pre">storage_self_discharge</span></code> represents the self-discharge (loss) of storage as % of the level of stored media
+in each timestep. This allows to model time-related losses in storage separately, in addition to charging and discharging losses.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>storage_initial</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>storage_self_discharge</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>time_order</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lvl_temporal</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cost-parameters-for-soft-relaxations-of-dynamic-constraints">
+<span id="section-parameter-soft-constraints"></span><h3>Cost parameters for ‘soft’ relaxations of dynamic constraints<a class="headerlink" href="#cost-parameters-for-soft-relaxations-of-dynamic-constraints" title="Permalink to this headline"></a></h3>
+<p>The implementation of MESSAGE<em>ix</em> includes the functionality for ‘soft’ relaxations of dynamic constraints on
+new-built capacity and activity (see Keppo and Strubegger, 2010 <span id="id29">[<a class="reference internal" href="../../bibliography.html#id5" title="Ilkka Keppo and Manfred Strubegger. Short term decisions for long term problems – The effect of foresight on model based energy systems analysis. Energy, 35(5):2033-2042, 2010. doi:10.1016/j.energy.2010.01.019.">5</a>]</span>).
+Refer to the section <a class="reference internal" href="model_core.html#dynamic-constraints"><span class="std std-ref">Dynamic constraints on new capacity and activity</span></a>. Absolute cost and levelized cost multipliers are used
+for the relaxation of upper and lower bounds.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abs_cost_new_capacity_soft_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>abs_cost_new_capacity_soft_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>level_cost_new_capacity_soft_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>level_cost_new_capacity_soft_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>abs_cost_activity_soft_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>abs_cost_activity_soft_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>level_cost_activity_soft_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>level_cost_activity_soft_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="historical-capacity-and-activity-values">
+<span id="section-parameter-historical"></span><h3>Historical capacity and activity values<a class="headerlink" href="#historical-capacity-and-activity-values" title="Permalink to this headline"></a></h3>
+<p>To model the transition of an energy system, the initial energy system with its energy mix
+needs to be defined first. The historical activity and the historical new capacity do this.
+These parameters have to be defined in order to limit the capacity in the first model period.</p>
+<p>Historical data on new capacity and activity levels are therefore included in MESSAGE<em>ix</em> for
+correct accounting of the vintage portfolio and a seamless implementation of dynamic constraints from
+historical years to model periods.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>historical_new_capacity <a class="footnote-reference brackets" href="#hist" id="id30">6</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>historical_activity <a class="footnote-reference brackets" href="#hist" id="id31">6</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The activity in the historic period can be defined with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{m} \text{ACT}_{n,t,y^V,y,m,h} \leq \text{duration_time}_{h} \cdot \text{capacity_factor}_{n,t,y^V,y,h} \\
+\cdot \text{CAP}_{n,t,y^V,y} \quad t \ \in \ T^{INV}\end{split}\]</div>
+<p>and the historical new capacity with</p>
+<div class="math notranslate nohighlight">
+\[\text{CAP_NEW}_{n,t,y^V} = \frac{\text{CAP}_{n,t,y^V,y}}{\text{duration_period}_{y}}\]</div>
+<p>Both equations are equally valid for model periods. However, to calculate <code class="docutils literal notranslate"><span class="pre">historical_new_capacity</span></code>
+and <code class="docutils literal notranslate"><span class="pre">historical_activity</span></code> all parameters must describe the historic period.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">duration_period</span></code> of the first period (historic period) is set to the value that appears
+most frequently in the model. If, for example, the majority of periods in the model
+consists of 10 years, the <code class="docutils literal notranslate"><span class="pre">duration_period</span></code> of the first period is likewise 10 years.</p>
+</section>
+<section id="auxiliary-investment-cost-parameters-and-multipliers">
+<span id="section-parameter-investment"></span><h3>Auxiliary investment cost parameters and multipliers<a class="headerlink" href="#auxiliary-investment-cost-parameters-and-multipliers" title="Permalink to this headline"></a></h3>
+<p>Auxiliary investment cost parameters include the remaining technical lifetime at the end of model horizon (<code class="docutils literal notranslate"><span class="pre">beyond_horizon_lifetime</span></code>) in addition to the
+different scaling factors and multipliers as listed below. These factors account for remaining capacity (<code class="docutils literal notranslate"><span class="pre">remaining_capacity</span></code>) or construction time of new capacity (<code class="docutils literal notranslate"><span class="pre">construction_time_factor</span></code>),
+the value of investment at the end of model horizon (<code class="docutils literal notranslate"><span class="pre">end_of_horizon_factor</span></code>) or the discount factor of remaining lifetime beyond model horizon (<code class="docutils literal notranslate"><span class="pre">beyond_horizon_factor</span></code>).</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index names</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>construction_time_factor</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>remaining_capacity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>end_of_horizon_factor</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>beyond_horizon_lifetime</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>beyond_horizon_factor</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="parameters-of-the-emission-section">
+<span id="section-parameter-emissions"></span><h2>Parameters of the <cite>Emission</cite> section<a class="headerlink" href="#parameters-of-the-emission-section" title="Permalink to this headline"></a></h2>
+<p>The implementation of MESSAGE<em>ix</em> includes a flexible and versatile accounting of emissions across different
+categories and species, with the option to define upper bounds and taxes on various (aggregates of) emissions
+and pollutants, (sets of) technologies, and (sets of) years.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>historical_emission <a class="footnote-reference brackets" href="#hist" id="id32">6</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">emission</span></code> | <code class="docutils literal notranslate"><span class="pre">type_tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>emission_scaling <a class="footnote-reference brackets" href="#em-scaling" id="id33">15</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">type_emission</span></code> | <code class="docutils literal notranslate"><span class="pre">emission</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>bound_emission</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">type_emission</span></code> | <code class="docutils literal notranslate"><span class="pre">type_tec</span></code> | <code class="docutils literal notranslate"><span class="pre">type_year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>tax_emission</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">type_emission</span></code> | <code class="docutils literal notranslate"><span class="pre">type_tec</span></code> | <code class="docutils literal notranslate"><span class="pre">type_year</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="em-scaling"><span class="brackets"><a class="fn-backref" href="#id33">15</a></span></dt>
+<dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">emission_scaling</span></code> is the scaling factor to harmonize bounds or taxes across types of
+emissions. It allows to efficiently aggregate different emissions/pollutants and set bounds or taxes on various categories.</p>
+</dd>
+</dl>
+</section>
+<section id="parameters-of-the-land-use-model-emulator-section">
+<span id="section-parameter-landuse-emulator"></span><h2>Parameters of the <cite>Land-Use model emulator</cite> section<a class="headerlink" href="#parameters-of-the-land-use-model-emulator-section" title="Permalink to this headline"></a></h2>
+<p>The implementation of MESSAGE<em>ix</em> includes a land-use model emulator, which draws on exogenous land-use scenarios
+(provided by another model) to derive supply of commodities (e.g., biomass) and emissions
+from agriculture and forestry. The parameters listed below refer to the assigned land scenario.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>historical_land <a class="footnote-reference brackets" href="#hist" id="id34">6</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>land_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>land_input</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>land_output</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>land_use</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>land_emission</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">emission</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>initial_land_scen_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>growth_land_scen_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>initial_land_scen_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> |  <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>growth_land_scen_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>initial_land_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>dynamic_land_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>growth_land_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>initial_land_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>dynamic_land_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>growth_land_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code> | <code class="docutils literal notranslate"><span class="pre">land_type</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters-of-the-share-constraints-section">
+<span id="section-parameter-share-constraints"></span><h2>Parameters of the <cite>Share Constraints</cite> section<a class="headerlink" href="#parameters-of-the-share-constraints-section" title="Permalink to this headline"></a></h2>
+<p>Share constraints define the share of a given commodity/mode to be active on a certain level. For the mathematical
+formulation, refer to <a class="reference internal" href="model_core.html#share-constraints"><span class="std std-ref">Constraints on shares of technologies and commodities</span></a>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>share_commodity_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shares</span></code> | <code class="docutils literal notranslate"><span class="pre">node_share</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>share_commodity_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shares</span></code> | <code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>share_mode_up</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shares</span></code> | <code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">technology</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>share_mode_lo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shares</span></code> | <code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">technology</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters-of-the-relations-section">
+<span id="section-parameter-generic-relations"></span><h2>Parameters of the <cite>Relations</cite> section<a class="headerlink" href="#parameters-of-the-relations-section" title="Permalink to this headline"></a></h2>
+<p>Generic linear relations are implemented in MESSAGE<em>ix</em>. This feature is intended for development and testing only - all new features
+should be implemented as specific new mathematical formulations and associated <em>sets</em> &amp; <em>parameters</em>. For the formulation of the relations,
+refer to <a class="reference internal" href="model_core.html#section-of-generic-relations"><span class="std std-ref">Section of generic relations (linear constraints)</span></a>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>relation_upper</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relation</span></code> | <code class="docutils literal notranslate"><span class="pre">node_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">year_rel</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>relation_lower</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relation</span></code> | <code class="docutils literal notranslate"><span class="pre">node_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">year_rel</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>relation_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relation</span></code> | <code class="docutils literal notranslate"><span class="pre">node_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">year_rel</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>relation_new_capacity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relation</span></code> | <code class="docutils literal notranslate"><span class="pre">node_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">year_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>relation_total_capacity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relation</span></code> | <code class="docutils literal notranslate"><span class="pre">node_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">year_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>relation_activity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relation</span></code> | <code class="docutils literal notranslate"><span class="pre">node_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">year_rel</span></code> | <code class="docutils literal notranslate"><span class="pre">node_loc</span></code> | <code class="docutils literal notranslate"><span class="pre">tec</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fixed-variable-values">
+<span id="section-parameter-fixed"></span><h2>Fixed variable values<a class="headerlink" href="#fixed-variable-values" title="Permalink to this headline"></a></h2>
+<p>The following parameters allow to set variable values to a specific value.
+The value is usually taken from a solution of another model instance
+(e.g., scenarios where a shock sets in later to mimic imperfect foresight).</p>
+<p>The fixed values do not override any upper or lower bounds that may be defined,
+so fixing variables to values outside of that range will yield an infeasible model.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>fixed_extraction</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">grade</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>fixed_stock</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">level</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>fixed_new_capacity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">technology</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>fixed_capacity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">technology</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>fixed_activity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">technology</span></code> | <code class="docutils literal notranslate"><span class="pre">year_vtg</span></code> | <code class="docutils literal notranslate"><span class="pre">year_act</span></code> | <code class="docutils literal notranslate"><span class="pre">mode</span></code> | <code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>fixed_land</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">land_scenario</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that the variable <span class="math notranslate nohighlight">\(STOCK\_CHG\)</span> is determined implicitly by the <span class="math notranslate nohighlight">\(STOCK\)</span> variable
+and therefore does not need to be explicitly fixed.</p>
+</section>
+<section id="auxiliary-reporting-parameters">
+<span id="section-parameter-auxiliary-reporting"></span><h2>Auxiliary reporting parameters<a class="headerlink" href="#auxiliary-reporting-parameters" title="Permalink to this headline"></a></h2>
+<p>The following parameters are used for reporting (post-processing) solved models. They assign monetary value to
+the <cite>net</cite> total system costs from trading and emission taxes (<code class="docutils literal notranslate"><span class="pre">total_cost</span></code>). Morevoer, they also assign a value
+to the <cite>total</cite> trade of commodities (the difference between the revenues from exports and the costs of imports,
+<code class="docutils literal notranslate"><span class="pre">trade_cost</span></code>) and to the costs from importing (<code class="docutils literal notranslate"><span class="pre">import_cost</span></code>) and the revenues from exporting (<code class="docutils literal notranslate"><span class="pre">export_cost</span></code>)
+in each node and year.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Index dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>total_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>trade_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>import_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>export_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node</span></code> | <code class="docutils literal notranslate"><span class="pre">commodity</span></code> | <code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../time.html" class="btn btn-neutral float-left" title="Years, periods, and time slices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model_core.html" class="btn btn-neutral float-right" title="MESSAGE core formulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calibrate and tune MESSAGE-MACRO &mdash; MESSAGEix 3.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/messageix-favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python API" href="api.html" />
+    <link rel="prev" title="Debugging and data validation" href="debugging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/combined-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prereqs.html">Prerequisite knowledge &amp; skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework.html">MESSAGE<em>ix</em> model &amp; framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Publications, Projects, and Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Mathematical Specification</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/sets_maps_def.html">Sets and mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Years, periods, and time slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/parameter_def.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_core.html">MESSAGE core formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/model_solve.html">Solve statement workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/reporting.html">Standard output reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MESSAGE/scaling_investment_costs.html">Auxiliary investment parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model/MACRO/macro_core.html">MACRO core formulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developing MESSAGEix models</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="efficiency.html">Efficiency - output- vs. input defined technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/add_year.html">Add model years to an existing Scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Postprocessing and reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging and data validation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Calibrate and tune MESSAGE-MACRO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-data-file">Input data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-issues">Numerical issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#oscillation-detection-in-the-message-macro-algorithm">Oscillation detection in the MESSAGE-MACRO algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-1-oscillations-not-detected">Issue 1: Oscillations not detected</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#identifying-oscillation">Identifying oscillation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preventing-oscillation">Preventing oscillation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-2-message-solves-optimally-with-unscaled-infeasibilities">Issue 2: MESSAGE solves optimally with unscaled infeasibilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-message_ix.macro"><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix.macro</span></code> internals</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help &amp; reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rmessageix.html">Usage in R via <code class="docutils literal notranslate"><span class="pre">reticulate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">What’s New</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notice.html">User guidelines and notice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html">Sharing publications, projects, and tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSAGEix</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Calibrate and tune MESSAGE-MACRO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/macro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calibrate-and-tune-message-macro">
+<h1>Calibrate and tune MESSAGE-MACRO<a class="headerlink" href="#calibrate-and-tune-message-macro" title="Permalink to this headline"></a></h1>
+<p>“MESSAGE-MACRO” refers to the combination of MESSAGE and MACRO, run iteratively in a multi-disciplinary optimization algorithm.
+This combination is activated by calling <a class="reference internal" href="api.html#message_ix.Scenario.solve" title="message_ix.Scenario.solve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">solve()</span></code></a> with the argument <cite>model=’MESSAGE-MACRO’</cite>, or using the GAMS <code class="file docutils literal notranslate"><span class="pre">MESSAGE-MACRO_run.gms</span></code> script directly (see <a class="reference internal" href="framework.html#running"><span class="std std-ref">Running a model</span></a> for details about these two methods).</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#input-data-file" id="id1">Input data file</a></p></li>
+<li><p><a class="reference internal" href="#numerical-issues" id="id2">Numerical issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#oscillation-detection-in-the-message-macro-algorithm" id="id3">Oscillation detection in the MESSAGE-MACRO algorithm</a></p></li>
+<li><p><a class="reference internal" href="#issue-1-oscillations-not-detected" id="id4">Issue 1: Oscillations not detected</a></p>
+<ul>
+<li><p><a class="reference internal" href="#identifying-oscillation" id="id5">Identifying oscillation</a></p></li>
+<li><p><a class="reference internal" href="#preventing-oscillation" id="id6">Preventing oscillation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#issue-2-message-solves-optimally-with-unscaled-infeasibilities" id="id7">Issue 2: MESSAGE solves optimally with unscaled infeasibilities</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-message_ix.macro" id="id8"><a class="reference internal" href="#module-message_ix.macro" title="message_ix.macro"><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix.macro</span></code></a> internals</a></p></li>
+</ul>
+</div>
+<section id="input-data-file">
+<span id="macro-input-data"></span><h2><a class="toc-backref" href="#id1">Input data file</a><a class="headerlink" href="#input-data-file" title="Permalink to this headline"></a></h2>
+<p>Using <a class="reference internal" href="api.html#message_ix.Scenario.add_macro" title="message_ix.Scenario.add_macro"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_macro()</span></code></a> requires an input data file in Microsoft Excel format.
+The format of this file is largely the same as for ixmp <a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/file-io.html#excel-data-format" title="(in ixmp v3.5.1.dev7+ge795853)"><span>Scenario/model data</span></a>, and includes the following sheets.
+For example input data files, see the files <code class="file docutils literal notranslate"><span class="pre">message_ix/tests/data/*_macro_input.xlsx</span></code> included as part of the <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code> test suite; either in your local installation, or <a class="reference external" href="https://github.com/iiasa/message_ix/tree/main/message_ix/tests/data">here on GitHub</a>.</p>
+<dl class="simple">
+<dt>“<code class="docutils literal notranslate"><span class="pre">config</span></code>” sheet</dt><dd><p>This configuration sheet specifies MACRO-related nodes and years, and mapps MACRO sectors to MESSAGE commodities and levels.
+The <code class="docutils literal notranslate"><span class="pre">config</span></code> sheet has five columns, each of which is a list of labels/codes for a corresponding <a class="reference external" href="https://docs.messageix.org/projects/ixmp/en/latest/data-model.html#data-model-data" title="(in ixmp v3.5.1.dev7+ge795853)"><span class="xref std std-ref">ixmp set</span></a>:</p>
+<ul class="simple">
+<li><p>“node”, “year”: these can each have any length, depending on the number of regions and years to be included in the MACRO calibration process.</p></li>
+<li><p>“sector”, “commodity”, “level”: these 3 columns must have equal lengths.
+They describe a one-to-one mapping between MACRO sectors (entries in the “sector” column) and MESSAGE commodities and levels (paired entries in the “commodity” and “level” columns).</p></li>
+</ul>
+</dd>
+<dt>MACRO parameter sheets</dt><dd><p>The remaining sheets each contain data for one MACRO parameter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">price_ref</span></code>: prices of MESSAGE commodities in a reference year.
+This reference year is a year for which commodity prices and energy system cost are known for a given demand of those commodities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cost_ref</span></code>: total cost of the energy system in the reference year.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demand_ref</span></code>: demand for different commodities in the referenbce year.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lotol</span></code>: tolerance factor for lower bounds on MACRO variabales.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esub</span></code>: elasticity between capital-labor and energy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drate</span></code>: social discount rate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">depr</span></code>: annual percent depreciation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpvs</span></code>: capital value share parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kgdp</span></code>: initial capital to GDP ratio in base year.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdp_calibrate</span></code>: trajectory of GDP in optimization years calibrated to energy demand to MESSAGE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aeei</span></code>: annual potential decrease of energy intensity in sector sector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MERtoPPP</span></code>: conversion factor of GDP from market exchange rates to purchasing power parity.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="numerical-issues">
+<h2><a class="toc-backref" href="#id2">Numerical issues</a><a class="headerlink" href="#numerical-issues" title="Permalink to this headline"></a></h2>
+<p>This section describes how to solve two numerical issues that can occur in large MESSAGE<em>ix</em> models.</p>
+<section id="oscillation-detection-in-the-message-macro-algorithm">
+<h3><a class="toc-backref" href="#id3">Oscillation detection in the MESSAGE-MACRO algorithm</a><a class="headerlink" href="#oscillation-detection-in-the-message-macro-algorithm" title="Permalink to this headline"></a></h3>
+<p>The documentation for the <a class="reference internal" href="api.html#message_ix.models.MESSAGE_MACRO" title="message_ix.models.MESSAGE_MACRO"><code class="xref py py-class docutils literal notranslate"><span class="pre">MESSAGE_MACRO</span></code></a> class describes the algorithm and its three parameters:</p>
+<ul class="simple">
+<li><p><cite>convergence_criterion</cite>,</p></li>
+<li><p><cite>max_adjustment</cite>, and</p></li>
+<li><p><cite>max_iteration</cite>.</p></li>
+</ul>
+<p>The algorithm detects ‘oscillation’, which occurs when MESSAGE and MACRO each return slightly different solutions, but these two solutions are each stable.</p>
+<p>If the difference between these points is greater than <cite>convergence_criterion</cite>, the algorithm might jump between these two points infinitely.
+Instead, the algorithm detects oscillation by comparing model solutions on each iteration to previous values recorded in the iteration log.</p>
+<p>If the algorithm picks up on the oscillation between iterations, then after MACRO has solved and before solving MESSAGE, a log message is printed as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span> <span class="n">Restarting</span> <span class="n">execution</span>
+<span class="o">---</span> <span class="n">MESSAGE</span><span class="o">-</span><span class="n">MACRO_run</span><span class="o">.</span><span class="n">gms</span><span class="p">(</span><span class="mi">4986</span><span class="p">)</span> <span class="mi">625</span> <span class="n">Mb</span>
+<span class="o">---</span> <span class="n">Reading</span> <span class="n">solution</span> <span class="k">for</span> <span class="n">model</span> <span class="n">MESSAGE_MACRO</span>
+<span class="o">---</span> <span class="n">MESSAGE</span><span class="o">-</span><span class="n">MACRO_run</span><span class="o">.</span><span class="n">gms</span><span class="p">(</span><span class="mi">4691</span><span class="p">)</span> <span class="mi">630</span> <span class="n">Mb</span>
+    <span class="o">+++</span> <span class="n">Indication</span> <span class="n">of</span> <span class="n">oscillation</span><span class="p">,</span> <span class="n">increase</span> <span class="n">the</span> <span class="n">scaling</span> <span class="n">parameter</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+++</span>
+<span class="o">---</span> <span class="n">GDX</span> <span class="n">File</span> <span class="n">c</span><span class="p">:</span>\<span class="n">repo</span>\<span class="n">message_ix</span>\<span class="n">message_ix</span>\<span class="n">model</span>\<span class="n">output</span>\<span class="n">MsgIterationReport_ENGAGE_SSP2_v4_EN_NPi2020_900</span><span class="o">.</span><span class="n">gdx</span>
+    <span class="n">Time</span> <span class="n">since</span> <span class="n">GAMS</span> <span class="n">start</span><span class="p">:</span> <span class="mi">1</span> <span class="n">hour</span><span class="p">,</span> <span class="mi">10</span> <span class="n">minutes</span>
+    <span class="o">+++</span> <span class="n">Starting</span> <span class="n">iteration</span> <span class="mi">14</span> <span class="n">of</span> <span class="n">MESSAGEix</span><span class="o">-</span><span class="n">MACRO</span><span class="o">...</span> <span class="o">+++</span>
+    <span class="o">+++</span> <span class="n">Solve</span> <span class="n">the</span> <span class="n">perfect</span><span class="o">-</span><span class="n">foresight</span> <span class="n">version</span> <span class="n">of</span> <span class="n">MESSAGEix</span> <span class="o">+++</span>
+<span class="o">---</span> <span class="n">Generating</span> <span class="n">LP</span> <span class="n">model</span> <span class="n">MESSAGE_LP</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example is from a particular model run, and the actual message may differ.</p>
+</div>
+<p>The algorithm then gradually reduces <cite>max_adjustment</cite> from the user-supplied value.
+This has the effect of reducing the allowable relative change in demands, until the <cite>convergence_criterion</cite> is met.</p>
+</section>
+<section id="issue-1-oscillations-not-detected">
+<h3><a class="toc-backref" href="#id4">Issue 1: Oscillations not detected</a><a class="headerlink" href="#issue-1-oscillations-not-detected" title="Permalink to this headline"></a></h3>
+<p>Oscillation detection can fail, especially when the oscillation is very small.
+When this occurs, MESSAGE-MACRO will iterate until <cite>max_iteration</cite> (default <code class="docutils literal notranslate"><span class="pre">50</span></code>) and then print a message indicating that it has not converged.</p>
+<p>For the MESSAGEix-GLOBIOM global model, this issue can be encountered with scenarios which have stringent carbon budgets (e.g. &lt;1000 Gt CO₂ cumulative) and require more aggressive reductions of demands.</p>
+<section id="identifying-oscillation">
+<h4><a class="toc-backref" href="#id5">Identifying oscillation</a><a class="headerlink" href="#identifying-oscillation" title="Permalink to this headline"></a></h4>
+<p>In order to find out whether failure to converge is due to undetected oscillation, check the iteration report in <code class="file docutils literal notranslate"><span class="pre">MsgIterationReport_&lt;</span><em><span class="pre">model_name</span></em><span class="pre">&gt;_&lt;</span><em><span class="pre">scenario_name</span></em><span class="pre">&gt;.gdx</span></code>.
+The initial iterations will show the objective function value either decreasing or increasing (depending on the model), but after a number of iterations, the objective function will flip-flop between two very similar values.</p>
+</section>
+<section id="preventing-oscillation">
+<h4><a class="toc-backref" href="#id6">Preventing oscillation</a><a class="headerlink" href="#preventing-oscillation" title="Permalink to this headline"></a></h4>
+<p>The issue can be resolved by tuning <cite>max_adjustment</cite> and <cite>convergence_criterion</cite> from their respective default values of <code class="docutils literal notranslate"><span class="pre">0.2</span></code> (20%) and <code class="docutils literal notranslate"><span class="pre">0.01</span></code> (1%).
+The general approach is to <strong>reduce max_adjustment</strong>.
+Reducing this parameter to half of its default value—i.e. <code class="docutils literal notranslate"><span class="pre">0.1</span></code>, or 10%—can help, but it can be reduced further, as low as <code class="docutils literal notranslate"><span class="pre">0.01</span></code> (1%).</p>
+<p>This may require further tuning of the other parameters: first, ensure that <cite>convergence_criterion</cite> is smaller than <cite>max_adjustment</cite>, e.g. set to <code class="docutils literal notranslate"><span class="pre">0.009</span></code> (0.9%) &lt; <code class="docutils literal notranslate"><span class="pre">0.01</span></code>.
+Second, due to the small change allowed to the model solution each iteration, if the initial MESSAGE solution is not close to the convergence point, numerous iterations could be required.
+Therefore <cite>max_iteration</cite> may also need an increase.</p>
+<p>These changes can be made in two ways:</p>
+<ol class="arabic simple">
+<li><p>Pass the values to <a class="reference internal" href="api.html#message_ix.models.MESSAGE_MACRO" title="message_ix.models.MESSAGE_MACRO"><code class="xref py py-class docutils literal notranslate"><span class="pre">MESSAGE_MACRO</span></code></a> via keyword arguments to <a class="reference internal" href="api.html#message_ix.Scenario.solve" title="message_ix.Scenario.solve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Scenario.solve()</span></code></a>.</p></li>
+<li><p>Manually edit the default values in <code class="file docutils literal notranslate"><span class="pre">MESSAGE-MACRO_run.gms</span></code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="issue-2-message-solves-optimally-with-unscaled-infeasibilities">
+<h3><a class="toc-backref" href="#id7">Issue 2: MESSAGE solves optimally with unscaled infeasibilities</a><a class="headerlink" href="#issue-2-message-solves-optimally-with-unscaled-infeasibilities" title="Permalink to this headline"></a></h3>
+<p>By default, <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code> is configured so that the CPLEX solver runs using the <cite>lpmethod</cite> option set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, selecting the dual simplex method.
+Solving models the size of MESSAGEix-GLOBIOM takes very long with the dual simplex method—scenarios with stringent constraints can take &gt;10 hours on common hardware.
+With <cite>lpmethod</cite> set to <code class="docutils literal notranslate"><span class="pre">4</span></code>, selecting the barrier method, the model can solve in under a minute.</p>
+<p>The drawback of using the barrier method is that, after CPLEX has solved, it crosses over to a simplex optimizer for verification.
+As part of this verification step, it may turn out that the CPLEX solution is “optimal with unscaled infeasibilities.”</p>
+<p>This issue arises when some parameters in the model are not well-scaled, resulting in numerical issues within the solver.
+<a class="reference external" href="https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/userman/html/solveLPS33.html">This page</a> (from an earlier, 2002 version of the CPLEX user manual) offers some advice on how to overcome the issues.
+The most direct solution is to rescale the parameters in the model itself.</p>
+<p>When this is not possible, there are some workarounds:</p>
+<ol class="arabic simple">
+<li><p>Adjust CPLEX’s convergence criterion, <cite>epopt</cite> (this is distinct from the <cite>convergence_criterion</cite> of the MESSAGE_MACRO algorithm).
+In <code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix</span></code>, <a class="reference internal" href="api.html#message_ix.models.DEFAULT_CPLEX_OPTIONS" title="message_ix.models.DEFAULT_CPLEX_OPTIONS"><code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_CPLEX_OPTIONS</span></code></a> sets this to <code class="docutils literal notranslate"><span class="pre">1e-6</span></code> by default.
+This approach is delicate, as changing the tolerance may also change the solution by a significant amount.
+This has not been tested in detail and should be handled with care.</p></li>
+<li><p>Switch to other methods provided by CPLEX, using e.g. <cite>lpmethod</cite> = <code class="docutils literal notranslate"><span class="pre">2</span></code>.
+A disadvantage of this approach is the longer runtime, as described above.</p></li>
+<li><p>Start the MESSAGE-MACRO algorithm with <cite>lpmethod</cite> set to <code class="docutils literal notranslate"><span class="pre">4</span></code>.
+Manually monitor its progress, and after approximately 10 iterations have passed, delete the file <code class="file docutils literal notranslate"><span class="pre">cplex.opt</span></code>.
+When CPLEX can not find its option file, it will revert to using a simplex method (and advanced basis) from thereon.</p></li>
+</ol>
+</section>
+</section>
+<section id="module-message_ix.macro">
+<span id="message-ix-macro-internals"></span><h2><a class="toc-backref" href="#id8"><a class="reference internal" href="#module-message_ix.macro" title="message_ix.macro"><code class="xref py py-mod docutils literal notranslate"><span class="pre">message_ix.macro</span></code></a> internals</a><a class="headerlink" href="#module-message_ix.macro" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="message_ix.macro.Calculate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">message_ix.macro.</span></span><span class="sig-name descname"><span class="pre">Calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.macro.Calculate" title="Permalink to this definition"></a></dt>
+<dd><p>Perform and store MACRO calibration calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.Scenario"><em>message_ix.Scenario</em></a>) – Must have a stored solution.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em> (</em><em>str -&gt; pd.DataFrame</em><em>) or </em><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.10)"><em>os.PathLike</em></a>) – If <code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code>, the path to an Excel file containing parameter data, one
+per sheet. If <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, a dictionary mapping parameter names to data
+frames.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="message_ix.macro.Calculate.derive_data">
+<span class="sig-name descname"><span class="pre">derive_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.macro.Calculate.derive_data" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate all necessary derived data, adding to self.data.
+(This is done through method chaining, the bottom of which is aconst()
+# NB this means it could be rewritten using reporting)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="message_ix.macro.Calculate.read_data">
+<span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.macro.Calculate.read_data" title="Permalink to this definition"></a></dt>
+<dd><p>Check and validate structure of data in <code class="docutils literal notranslate"><span class="pre">self.data</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – if any of the require parameters for MACRO calibration
+    (<code class="xref py py-data docutils literal notranslate"><span class="pre">VERIFY_INPUT_DATA</span></code>) is missing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.macro.add_model_data">
+<span class="sig-prename descclassname"><span class="pre">message_ix.macro.</span></span><span class="sig-name descname"><span class="pre">add_model_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.macro.add_model_data" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate required parameters and add data to <cite>clone</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base</strong> (<a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.Scenario"><em>message_ix.Scenario</em></a><em>(</em><em>)</em>) – Base scenario with a solution.</p></li>
+<li><p><strong>clone</strong> (<a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.Scenario"><em>message_ix.Scenario</em></a><em>(</em><em>)</em>) – Clone of base scenario for adding calibration parameters.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Data of calibration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.10)"><strong>type</strong></a> – If the data format is not compatible with MESSAGEix parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="message_ix.macro.calibrate">
+<span class="sig-prename descclassname"><span class="pre">message_ix.macro.</span></span><span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_convergence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_ix.macro.calibrate" title="Permalink to this definition"></a></dt>
+<dd><p>Calibrates a MESSAGEix scenario to parameters of MACRO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.Scenario"><em>message_ix.Scenario</em></a><em>(</em><em>)</em>) – MESSAGEix scenario with calibration data.</p></li>
+<li><p><strong>check_convergence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em><em>, </em><em>default: True</em>) – Test is MACRO-calibrated scenario converges in one iteration.</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – To be passed to message_ix.Scenario.solve().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – If calibrated scenario solves in more than one iteration.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>s</strong> – MACRO-calibrated scenario.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="api.html#message_ix.Scenario" title="message_ix.Scenario">message_ix.Scenario</a>()</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="debugging.html" class="btn btn-neutral float-left" title="Debugging and data validation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, IIASA Energy, Climate, and Environment (ECE) Program.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
