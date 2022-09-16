@@ -13,7 +13,14 @@ EM - wind
 EN - hydro
 EO - demand
 
+However, the py-code implies other sequence of hydro and demand, see e.g.,
+lines 56-57 of zzx01.py:
+    hydro = dt[:, 4 + 5 * value[region]]
+    demand = dt[:, 3 + 5 * value[region]]
+I guess rather the code than the above description is correct. Please explore
+and comment.
+
 Warning: countries.xlsx was removed from an old commit because it hanged the
-push (the file is 70MB). Thereffore this file is now in .gitignore. It looks
+push (the file is 70MB). Therefore this file is now in .gitignore. It looks
 like the file is included in the cloned repo (on github). It might cause
 problems with pulling the repo.
