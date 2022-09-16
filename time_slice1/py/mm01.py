@@ -27,7 +27,8 @@ print('Started at:', str(now))
 
 #   algorithm(data, name, value, solarweight, windweight, hydroweight, demandweight, mid_night, path):
 
-data = pd.read_excel('../data/countries.xlsx')
+# data = pd.read_excel('../data/countries.xlsx')
+data = pd.read_excel('../data/china.xlsx')
 name = ['CHN']
 value = [28]
 
@@ -54,11 +55,16 @@ solar_and_wind_duration_curve_annual = np.zeros(shape=8760)
 while region < total_regions:
 
     # Hourly solar, wind, hydro and demand data.
-    solar = dt[:, 1 + 5 * value[region]]
-    wind = dt[:, 2 + 5 * value[region]]
-    hydro = dt[:, 4 + 5 * value[region]]
-    demand = dt[:, 3 + 5 * value[region]]
-    demand_MW = dt[:, 5 + 5 * value[region]]
+    # solar = dt[:, 1 + 5 * value[region]]
+    # wind = dt[:, 2 + 5 * value[region]]
+    # hydro = dt[:, 4 + 5 * value[region]]
+    # demand = dt[:, 3 + 5 * value[region]]
+    # demand_MW = dt[:, 5 + 5 * value[region]]
+    solar = dt[:, 1]
+    wind = dt[:, 2]
+    hydro = dt[:, 4]
+    demand = dt[:, 3]
+    demand_MW = dt[:, 5]
 
 
     solar_load_curve_annual = np.sort(solar, axis=None)[::-1]   # 原始数据由高到低排序，无时序,n行1列
