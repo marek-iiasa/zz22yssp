@@ -1,5 +1,5 @@
 # code provided by Zixuan on Sep 15, 22  (file-name: testtest.py)
-# code copied from 'Time_steps_clustering_48', used for pick 48 time-slices from 8760 hourly data in a year.
+# code copied from 'Time_steps_clustering_48', used only for pick 48 time-slices from 8760 hourly data in a year.
 # -*- coding: utf-8 -*-
 """
 Created on Fri Feb 28 00:15:25 2020
