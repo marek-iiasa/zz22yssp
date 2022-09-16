@@ -2,7 +2,7 @@ Data provided by Julian as individual countries.xlsx renamed to: countries.xlsx
 
 The new china.{numbers, xlsx} spread=sheets (for mac-numbers and ms-excel, respectively)
 are composed of selected columns of countries.xlsx, namely: A, EL, EM, EN, EO, EP
-(EL to EO: normalized value between [0,1], EP: demand in MW unit.).
+(EL, EM, EN, EO: normalized value between [0,1], EP: demand in MW unit.).
 
 Original note on the content of XLSX:
 Columns of the XLS (from Zixuan) corresponding to the data used for exploring
