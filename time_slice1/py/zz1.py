@@ -1,4 +1,5 @@
 # code provided by Zixuan on Sep 15, 22  (file-name: testtest.py)
+# code copied from 'Time_steps_clustering_48', used for pick 48 time-slices from 8760 hourly data in a year.
 # -*- coding: utf-8 -*-
 """
 Created on Fri Feb 28 00:15:25 2020
@@ -15,7 +16,7 @@ import xarray as xr
 import datetime
 from datetime import timedelta
 
-path = "C:/Users/zhangzixuan/OneDrive/Research/Message/zz_yssp22_tc/time clustering/"
+path = "C:/Users/zhangzixuan/OneDrive/Research/Message/zzx22yssp/time_slice1/py/"
 
 os.chdir(path)
 
@@ -23,7 +24,7 @@ now = datetime.datetime.now()
 
 #   algorithm(data, name, value, solarweight, windweight, hydroweight, demandweight, mid_night, path):
 
-data = pd.read_excel('individual countries.xlsx')
+data = pd.read_excel('../data/countries.xlsx')
 name = ['CHN']
 value = [28]
 
