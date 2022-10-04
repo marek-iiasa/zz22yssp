@@ -1,5 +1,9 @@
 Data provided by Julian as individual countries.xlsx renamed to: countries.xlsx
 
+The new test.csv, column: solar, wind, west electricity demand; east electricity demand, unit in MWh.
+
+The new test_h2.csv contains monthly H2 demand, unit in GWh.
+
 The new china.{numbers, xlsx} spread=sheets (for mac-numbers and ms-excel, respectively)
 are composed of selected columns of countries.xlsx, namely: A, EL, EM, EN, EO, EP
 (EL to EO: normalized value between [0,1], EP: demand unit in MW).
