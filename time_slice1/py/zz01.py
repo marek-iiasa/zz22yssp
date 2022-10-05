@@ -24,9 +24,9 @@ now = datetime.datetime.now()
 
 #   algorithm(data, name, value, solarweight, windweight, hydroweight, demandweight, mid_night, path):
 
-data = pd.read_excel('../data/countries.xlsx')
-name = ['CHN']
-value = [28]
+# data = pd.read_excel('../data/countries.xlsx')
+data = pd.read_excel('../data/test.xlsx')
+name = ['CHN'] value = [28]
 
 solar_weight = 0.35
 wind_weight = 0.35
