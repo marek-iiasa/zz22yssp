@@ -1,6 +1,6 @@
 Data provided by Julian as individual countries.xlsx renamed to: countries.xlsx
 
-The new test.csv, column: solar, wind, west electricity demand; east electricity demand, unit in MWh.
+The new test.csv, column: wind, solar, west electricity demand; east electricity demand, unit in MWh.
 
 The new test_h2.csv contains monthly H2 demand, unit in GWh.
 
