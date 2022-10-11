@@ -43,9 +43,9 @@ total_regions = len(name)
 region = 0  # 设定region初始值，后续循环
 
 # 程序开始
-solar_and_wind_seasonal = np.zeros(shape=48)    # 1行48列空矩阵
+solar_and_wind_seasonal = np.zeros(shape=48)
 solar_and_wind_sorter_seasonal = np.zeros(shape=48)
-solar_and_wind_duration_curve_seasonal = np.zeros(shape=8760)   # 1行8760列空矩阵，为原数据排序做准备
+solar_and_wind_duration_curve_seasonal = np.zeros(shape=8760)
 
 solar_and_wind_annual = np.zeros(shape=48)
 solar_and_wind_sorter_annual = np.zeros(shape=48)
@@ -67,13 +67,15 @@ while region < total_regions:
     demand_MW = dt[:, 5]
 
 
-    solar_load_curve_annual = np.sort(solar, axis=None)[::-1]   # 原始数据由高到低排序，无时序,n行1列
+    solar_load_curve_annual = np.sort(solar, axis=None)[::-1]   # sorted from highest to lowest, no time order
     wind_load_curve_annual = np.sort(wind, axis=None)[::-1]
     demand_load_curve_annual = np.sort(demand, axis=None)[::-1]
     hydro_load_curve_annual = np.sort(hydro, axis=None)[::-1]
 
     # Seasonal yearly load curve (winter, spring, summer, autumn, each 2190 hours, 8769/4)
-    solar_load_curve_Wi = np.sort(solar[0:2190], axis=None)[::-1]   # 原始数据拆分为4个季节后，每个季节每个技术的从高到低排序，无时序
+    # pick up data in each season as a new matrix and sorted from highest to lowest based on data type
+    # no time order
+    solar_load_curve_Wi = np.sort(solar[0:2190], axis=None)[::-1]
     wind_load_curve_Wi = np.sort(wind[0:2190], axis=None)[::-1]
     hydro_load_curve_Wi = np.sort(hydro[0:2190], axis=None)[::-1]
     demand_load_curve_Wi = np.sort(demand[0:2190], axis=None)[::-1]
@@ -115,7 +117,7 @@ while region < total_regions:
         if xx < 4:
             nothing = 0
         else:
-            xx = 0  # 如果xx≥4，赋值xx=0
+            xx = 0  # if xx ≥4，xx=0
             if xxxx == 0:
                 w1 = w1 + solar_4h[xxx]
                 xxxx = xxxx + 1
@@ -202,8 +204,8 @@ while region < total_regions:
         d_su_4_sorted1 = demand_4h[547 + 547 + w * 42:547 + 547 + w * 42 + 42]
         d_a_4_sorted1 = demand_4h[547 + 547 + 547 + w * 42:547 + 547 + 547 + w * 42 + 42]
 
-        d1 = 0 # 0-42个片段
-        while d1 < 36:  # d1=35, 最后一周，时间片段[35-41)
+        d1 = 0 # 0-42 time slices in the week
+        while d1 < 36:  # d1=35, the last week，number of time slices in the week [35-41)
             list_of_days = []
             list_of_days.append(d1)
             list_of_days.append(d1 + 1)
