@@ -21,5 +21,12 @@ country = "China"
 scenario.add_spatial_sets({"country": country})
 
 # modes of operation of technologies, define how certain technologies operate
-scenario.add_spatial_sets("commodity", ["electricity", "hydrogen"])
-scenario.add_set("level", ["secondary", "", ""])
+scenario.add_spatial_sets("commodity", ["electricity", "hydrogen", "water"])
+scenario.add_set("level", ["secondary", "storage", "tertiary", "final"])
+scenario.add_set("technology", ["wind_ppl", "electrolyser", "hydro_turbine", "battery", "fuel_cell", "grid"])
+scenario.add_set("mode", "standard")
+
+# supply and demand (balancing commodities)
+demand_per_year = 8000  # just assume, need modified
+electricity_demand = pd.DataFrame({"node": country, "level": "useful", "year": model_horizon, "time": "year",
+                                   "value": (demand_per_year * gdp_profile).round(), "unit": "GWa",})
