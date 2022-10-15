@@ -80,7 +80,7 @@ if r_or_c == True:
     selected_regions_or_countries = [0,8]
 
 else:
-    input_data = pd.read_excel('../data/test.xlsx')
+    input_data = pd.read_excel('../data/CHN_west.xlsx')
     #input_data = pd.read_excel('test_ordos.xlsx')
     # Select the number of the country that needs to be analysed with the numbers below:
     # country => AFG = 0; AGO = 1; ALB = 2; ARE = 3; ARG = 4; ARM = 5; AUS = 6; AUT = 7; AZE = 8; BDI = 9; BEL = 10; BEN = 11; BFA = 12; BGD = 13; BGR = 14; BHR = 15; BIH = 16; BLR = 17; BLZ = 18; BOL = 19; BRA = 20;
@@ -92,7 +92,7 @@ else:
     #PAK = 121; PAN = 122; PER = 123; PHL = 124; PNG = 125; POL = 126; PRK = 127; PRT = 128; PRY = 129; QAT = 130; ROU = 131; RUS = 132; RWA = 133; SAU = 134; SDN = 135; SEN = 136; SGP = 137; SLE = 138; SLV = 139; SOM = 140;
     #SRB = 141; SUR = 142; SVK = 143; SVN = 144; SWE = 145; SWZ = 146; SYR = 147; TCD = 148; TGO = 149; THA = 150; TJK = 151; TKM = 152; TLS = 153; TTO = 154; TUN = 155; TUR = 156; TWN = 157; TZA = 158; UGA = 159; UKR = 160;
     #URY = 161; USA = 162; UZB = 163; VEN = 164; VNM = 165; YEM = 166; ZAF = 167; ZMB = 168; ZWE = 169;
-    regions_or_countries = ['test']
+    regions_or_countries = ['CHN_west']
     selected_regions_or_countries = [0]
 
 if daily_time_slices_in_a_week == 2:
